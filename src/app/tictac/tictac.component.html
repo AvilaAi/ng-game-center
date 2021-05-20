@@ -1,0 +1,48 @@
+<app-navigation></app-navigation>
+
+<h1 class="text-center my-5">{{ title }}</h1>
+
+<div class="container board">
+  <button
+    class="btn btn-outline-secondary"
+    type="button"
+    *ngFor="let n of numbers; let id = index"
+    (click)="drawX(id)"
+    [disabled]="
+      currentPlayer === o || spaceO.indexOf(id) < 0 || winner.length > 0
+    "
+  >
+    <p
+      class="my-0"
+      [ngClass]="{
+        winStyle: winLine.indexOf(id) !== -1,
+        oStyle: occupO.indexOf(id) !== -1
+      }"
+    >
+      {{ occupX.indexOf(id) !== -1 ? "x" : "" }}
+      {{ occupO.indexOf(id) !== -1 ? "o" : "" }}
+    </p>
+  </button>
+</div>
+
+<div *ngIf="winner.length > 0" class="foot mt-5">
+  <h1 class="text-center">
+    {{
+      winner === x
+        ? "You Win!"
+        : winner === o
+        ? "Computer Wins!"
+        : winner === nulGame && "Game Nul"
+    }}
+  </h1>
+  <button class="btn btn-warning fw-bolder text-muted" (click)="ngOnInit()">
+    Restart
+  </button>
+</div>
+
+<div *ngIf="winner.length < 1" class="foot mt-5">
+  <h4 class="text-left text-muted">
+    You: X <br />
+    Computer: O
+  </h4>
+</div>
