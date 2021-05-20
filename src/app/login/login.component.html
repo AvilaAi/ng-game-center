@@ -1,5 +1,5 @@
 <div class="container-fluid container-login">
-  <div class="card text-center px-5 py-3 border border-dark border-5">
+  <div class="card text-center px-5 py-3 border border-dark border-5 shadow-lg">
     <div class="card-body">
       <h1 class="card-title fw-bold pe-3">🕹️ Game center</h1>
       <form #f="ngForm" (ngSubmit)="onSubmit(f)">
@@ -39,7 +39,11 @@
             >
           </span>
         </div>
-        <button type="button" type="submit" class="btn btn-dark my-2 px-5 fw-bold">
+        <button
+          type="button"
+          type="submit"
+          class="btn btn-dark my-2 px-5 fw-bold"
+        >
           Go!
         </button>
       </form>

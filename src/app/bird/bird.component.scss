@@ -1,0 +1,49 @@
+#playground {
+  width: 500px;
+  height: 500px;
+  border: 2px solid gray;
+  margin: auto;
+  overflow: hidden;
+  background: rgb(4, 96, 124);
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:30px;'><text y='50%'> 🐤</text></svg>")
+      16 0,
+    auto;
+}
+
+.wall {
+  width: 50px;
+  height: 500px;
+  position: relative;
+  left: 400px;
+  animation: roll 2s infinite linear;
+  background: gray;
+
+  &:hover {
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:30px;'><text y='50%'> 💀</text></svg>")
+        16 0,
+      auto;
+    animation-play-state: paused;
+  }
+
+  & .break {
+    background: rgb(4, 96, 124);
+    height: 50px;
+    position: relative;
+
+    &:hover {
+      cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:30px;'><text y='50%'> 🐤</text></svg>")
+          16 0,
+        auto;
+      animation-play-state: running;
+    }
+  }
+}
+
+@keyframes roll {
+  0% {
+    left: 0px;
+  }
+  100% {
+    left: 520px;
+  }
+}

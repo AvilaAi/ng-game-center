@@ -8,6 +8,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { BirdComponent } from './bird/bird.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { HomeComponent } from './home/home.component';
     NavigationComponent,
     LoginComponent,
     HomeComponent,
+    BirdComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],

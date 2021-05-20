@@ -1,3 +1,29 @@
 <app-navigation></app-navigation>
 
-home
+<div class="container px-2 pt-5">
+  <div class="row gx-5">
+    <div class="col col-sm-3" *ngFor="let game of games">
+      <div class="card shadow-lg">
+        <!--
+
+            <img src="{{ game.photo }}" class="card-img-top" alt="snake game" />
+        -->
+
+        <div class="image-container bg-dark"></div>
+        <div class="card-body">
+          <h4 class="card-title">{{ game.name }}</h4>
+          <p class="card-text">
+            {{ game.infos }}
+          </p>
+          <a
+            class="btn btn-primary"
+            type="button"
+            class="btn btn-warning"
+            routerLink="{{ game.url }}"
+            >Go</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

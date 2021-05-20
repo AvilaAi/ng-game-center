@@ -1,0 +1,21 @@
+<app-navigation></app-navigation>
+
+<div class="container-fluid mt-5 d-flex flex-column">
+  <div class="container" id="playground">
+    <div
+      class="wall"
+      [ngStyle]="{
+        'animation-play-state': animationStop ? 'paused' : 'running'
+      }"
+    >
+      <div
+        class="break"
+        [ngStyle]="{
+          top: breakPosition + 'px',
+          height: breakHeight + 'px'
+        }"
+      ></div>
+    </div>
+  </div>
+  <button class="btn btn-dark m-auto" (click)="gameStop()">stop</button>
+</div>
