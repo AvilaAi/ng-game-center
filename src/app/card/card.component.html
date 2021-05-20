@@ -1,0 +1,21 @@
+<app-navigation></app-navigation>
+
+<div class="container px-2 pt-5">
+  <div class="row g-5">
+    <div
+      class="col col-sm-3 col-md-2"
+      *ngFor="let num of numbers; let id = index"
+    >
+      <div class="card shadow-lg">
+        <div
+          class="card-body"
+          style="
+            background-image: url(https://pokeres.bastionbot.org/images/pokemon/{{
+            id + 1
+          }}.png);
+          "
+        ></div>
+      </div>
+    </div>
+  </div>
+</div>
