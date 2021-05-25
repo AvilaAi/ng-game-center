@@ -4,6 +4,7 @@ import { BirdComponent } from './bird/bird.component';
 import { CardComponent } from './card/card.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { PianoComponent } from './piano/piano.component';
 import { SnakeComponent } from './snake/snake.component';
 import { TictacComponent } from './tictac/tictac.component';
 
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'home-component', component: HomeComponent },
   { path: 'bird-component', component: BirdComponent },
   { path: 'card-component', component: CardComponent },
+  { path: 'piano-component', component: PianoComponent },
 
   { path: '**', component: LoginComponent },
 ];

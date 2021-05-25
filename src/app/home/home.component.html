@@ -2,19 +2,41 @@
 
 <div class="container px-2 pt-5">
   <div class="row gx-5">
+    <div class="col col-sm-12">
+      <h2 class="text-dark mt-0 mb-2">
+        <span class="badge bg-light text-dark">Classic:</span>
+      </h2>
+    </div>
     <div class="col col-sm-3" *ngFor="let game of games">
       <div class="card shadow-lg">
-        <!--
+        <img src="{{ game.photo }}" class="card-img-top" alt="snake game" />
 
-            <img src="{{ game.photo }}" class="card-img-top" alt="snake game" />
-        -->
+        <div class="card-body d-flex justify-content-between">
+          <span class="card-title">{{ game.name }}</span>
 
-        <div class="image-container bg-dark"></div>
-        <div class="card-body">
-          <h4 class="card-title">{{ game.name }}</h4>
-          <p class="card-text">
-            {{ game.infos }}
-          </p>
+          <a
+            class="btn btn-primary"
+            type="button"
+            class="btn btn-warning"
+            routerLink="{{ game.url }}"
+            >Go</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="col col-sm-12">
+      <h2 class="text-dark mt-5 mb-2">
+        <span class="badge bg-warning text-dark">New:</span>
+      </h2>
+    </div>
+    <div class="col col-sm-3" *ngFor="let game of games">
+      <div class="card shadow-lg">
+        <img src="{{ game.photo }}" class="card-img-top" alt="snake game" />
+
+        <div class="card-body d-flex justify-content-between">
+          <span class="card-title">{{ game.name }}</span>
+
           <a
             class="btn btn-primary"
             type="button"
