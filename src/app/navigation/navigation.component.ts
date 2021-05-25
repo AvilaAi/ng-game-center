@@ -17,4 +17,12 @@ export class NavigationComponent implements OnInit {
   ngDoCheck() {
     this.user = JSON.parse(sessionStorage.getItem('user') || '');
   }
+
+  components = [
+    { name: 'home', emoji: '🏠', link: '/home-component' },
+    { name: 'snake', emoji: '🐍', link: '/snake-component' },
+    { name: 'tic-tac-toe', emoji: '⭕', link: '/tictac-component' },
+    { name: 'cards', emoji: '🃏', link: '/card-component' },
+    { name: 'bird', emoji: '🐤', link: '/bird-component' },
+  ];
 }
