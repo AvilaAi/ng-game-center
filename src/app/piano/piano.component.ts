@@ -10,6 +10,8 @@ export class PianoComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  numbers=Array(13)
+  
   playAudio() {
     var audio = new Audio('../../assets/audios/c3.mp3');
     audio.play();
