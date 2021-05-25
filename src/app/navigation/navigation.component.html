@@ -19,36 +19,13 @@
           "Welcome " + user.avatar + user.name
         }}</span>
         <a
+          *ngFor="let c of components"
           type="button"
           class="btn btn-outline-warning"
-          routerLink="/home-component"
-          >Home</a
-        >
-
-        <a
-          type="button"
-          class="btn btn-outline-warning"
-          routerLink="/snake-component"
+          routerLink="{{ c.link }}"
           routerLinkActive="active"
+          >{{ c.emoji + " " + c.name }}</a
         >
-          🐍 Snake</a
-        >
-        <a
-          type="button"
-          class="btn btn-outline-warning"
-          routerLink="/tictac-component"
-          routerLinkActive="active"
-        >
-          ⭕ Tic-Tac-Toe</a
-        >
-        <a
-        type="button"
-        class="btn btn-outline-warning"
-        routerLink="/bird-component"
-        routerLinkActive="active"
-      >
-        bird</a
-      >
       </div>
     </div>
   </div>
