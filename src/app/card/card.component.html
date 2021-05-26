@@ -1,9 +1,6 @@
 <app-navigation></app-navigation>
 
 <div class="container px-2 pt-5">
-<<<<<<< HEAD
-  <div class="row g-5 px-5">
-=======
   <div *ngIf="!isGameStart" class="modal-dialog m-auto">
     <div class="modal-content p-5">
       <h3 class="mb-5">{{ message }}</h3>
@@ -12,19 +9,10 @@
   </div>
   <div class="row g-5 card-container m-auto">
     <h3 class="col col-sm-12 mt-0 text-light">Time: {{ timer }}</h3>
->>>>>>> 8be07f642172a0143a7df3d0db8edbacf428d685
     <div
       class="col col-sm-4 col-md-3 my-2"
       *ngFor="let num of numbers; let i = index"
     >
-<<<<<<< HEAD
-      <div class="card shadow-lg">
-        <img
-          src="https://pokeres.bastionbot.org/images/pokemon/{{ id + 1 }}.png"
-          class="img-thumbnail my-auto"
-          alt="..."
-        />
-=======
       <div
         class="container-fluid shadow-lg p-0 border-0"
         (click)="flipCard(i)"
@@ -53,7 +41,6 @@
         <div class="card card-back p-0 border-0">
           <img src="../../assets/images/pokemon-card-back.png" alt="pokemon" />
         </div>
->>>>>>> 8be07f642172a0143a7df3d0db8edbacf428d685
       </div>
     </div>
   </div>

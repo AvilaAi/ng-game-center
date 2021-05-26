@@ -1,14 +1,38 @@
-<app-navigation>
+<app-navigation> </app-navigation>
 
-</app-navigation>
+<div class="d-flex justify-content-center">
+  <span
+    *ngFor="let t of tipActive; let index = index"
+    class="bg-light keynote text-center"
+    [style.visibility]="t === ' ' ? 'hidden' : 'visible'"
+    id="{{ 'note' + index }}"
+    [ngClass]="{
+      'high-light': index === initId
+    }"
+  >
+    {{ t }}
+  </span>
+</div>
 
-<button class="btn btn-warning" (click)='playAudio()'>Play</button>
-
-
-<div class="container-fluid">
-
-    <div class="key" *ngFor='let n of numbers'>
-
-
+<div class="container d-flex justify-content-center my-2">
+  <button
+    class="btn btn-outline-warning mx-2"
+    *ngFor="let tip of tips; let index = index"
+    (click)="playOnKeyboard(index)"
+  >
+    {{ tip.name }}
+  </button>
+</div>
+<div class="container keyboard d-flex justify-content-center m-auto">
+  <div
+    type="button"
+    class="key d-flex flex-column text-muted"
+    *ngFor="let n of notes"
+    id="{{ n.note }}"
+    (click)="playAudio(n)"
+  >
+    <div class="text-center mt-auto mb-2">
+      {{ n.note.toUpperCase() }}
     </div>
+  </div>
 </div>
