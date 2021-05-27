@@ -3,19 +3,29 @@
 <div class="container-fluid mt-5 d-flex flex-column">
   <div class="container" id="playground">
     <div
-      class="wall"
+      #block
+      id="block"
       [ngStyle]="{
-        'animation-play-state': animationStop ? 'paused' : 'running'
+        'animation-play-state': gameIsOver ? 'paused' : 'initial',
+        animation: gameIsOver ? 'none' : 'block 2s infinite linear',
+        left: gameIsOver ? '20px' : 'initial'
       }"
-    >
-      <div
-        class="break"
-        [ngStyle]="{
-          top: breakPosition + 'px',
-          height: breakHeight + 'px'
-        }"
-      ></div>
-    </div>
+    ></div>
+    <div
+      #space
+      id="space"
+      [ngStyle]="{
+        animation: gameIsOver ? 'none' : 'block 2s infinite linear',
+        left: gameIsOver ? '20px' : 'initial'
+      }"
+    ></div>
+    <div #character id="character" class="text-center">{{ !gameIsOver || gameInitial ? user.avatar:'☠️' }}</div>
   </div>
-  <button class="btn btn-dark m-auto" (click)="gameStop()">stop</button>
+</div>
+
+<div class="container d-flex justify-content-center">
+  <button class="btn btn-warning" *ngIf="gameIsOver" (click)="onClickStart()">
+    start
+  </button>
+  <p class="text-light">score:{{ counter }}</p>
 </div>

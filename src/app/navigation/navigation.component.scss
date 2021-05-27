@@ -6,3 +6,11 @@
 .navbar-nav a {
   margin-right: 20px;
 }
+
+.side-bar {
+  height: calc(100vh - 70px);
+  position: absolute;
+  background-color: green;
+  top: 70px;
+  width: fit-content;
+}

@@ -31,14 +31,17 @@ export class PianoComponent implements OnInit {
 
   isPlayOnKey = false;
   tips = [
-    { name: 'Tips', value: 'ghjgl jhlh gdj gf gfdfghsg hjiijhgh' },
-    { name: 'Upon the journey', value: 'ghjgl jhlh gdd fgs sdfghsg hjiijhgg' },
+    { name: ' 💡 Tips', value: 'ghjgl jhlh gdj gf gfdfghsg hjiijhgh' },
     {
-      name: 'Aoi aoi ano sora',
+      name: ' 🌸 Upon the journey',
+      value: 'ghjgl jhlh gdd fgs sdfghsg hjiijhgg',
+    },
+    {
+      name: ' 🌀 Aoi aoi ano sora',
       value: 'sghu h g sghuuiuil sghu h g gli gli rrgg',
     },
     {
-      name: 'Wingardium leviosaaaa',
+      name: ' 🧹 Wingardium leviosaaaa',
       value: 'adgfd jh f dgfera adgfd jl ki yijua gd',
     },
   ];
@@ -50,7 +53,6 @@ export class PianoComponent implements OnInit {
     var keyPlayed = this.el.nativeElement.querySelector('#' + n.note);
     var vol = this.el.nativeElement.querySelector('#volumRange');
     vol = (vol.value / 100).toFixed(1);
-
     audio.volume = vol;
     keyPlayed.classList.add('playing');
     setTimeout(() => {
@@ -83,7 +85,6 @@ export class PianoComponent implements OnInit {
   playOnKeyboard(tipId: any) {
     this.initId = 0;
     this.tipActive = this.tips[tipId].value.split('');
-
     this.isPlayOnKey = true;
   }
 }

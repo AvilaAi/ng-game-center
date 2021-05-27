@@ -1,4 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+$breakpoints: (
+  phone: 640px,
+  tablet: 768px,
+  desktop: 1024px,
+) !default;
+
 * {
   box-sizing: border-box;
 }
@@ -8,4 +14,8 @@ html {
   height: 100vh;
   overflow-x: hidden;
   background-color: #192a56;
+  font-size: 62.5%;
+  @media (min-width: 1300px) {
+    font-size: 100%;
+  }
 }

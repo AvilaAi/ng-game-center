@@ -35,11 +35,13 @@
 
 .keynote {
   text-transform: uppercase;
-  width: 22px;
+  width: 2rem;
   border: 1px solid gray;
   transition: all 0.4s;
+  font-size: 1.2rem;
+  font-family: Georgia, 'Times New Roman', Times, serif;
   &.high-light {
-    background: rgb(247, 228, 153) !important;
+    background: rgb(248, 220, 109) !important;
   }
   &:first-of-type {
     position: relative;
@@ -49,26 +51,35 @@
     position: absolute;
     top: -30px;
     left: -1px;
-    background-color: black;
     opacity: 1;
     height: 100%;
     text-transform: none;
     content: " ⬇️ Follow the note on keyboard:";
     display: flex;
     justify-content: flex-start;
-
-    width: 240px;
+    width: 400px;
     padding-left: 4px;
     color: whitesmoke;
   }
 }
 
 #volumRange {
-  width: 150px;
-  height: 20px;
-  margin: 0;
-  transform-origin: 75px 75px;
   transform: rotate(-90deg);
-  position: absolute;
-  bottom: 0px;
+  height: 200px;
+  display: flex;
+  width: 200px;
+  height: 20px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.slider {
+  width: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-left: 40px;
+  font-size: 20px;
 }
