@@ -86,6 +86,7 @@ export class TictacComponent implements OnInit {
     var newO;
     const random = Math.floor(Math.random() * this.spaceO.length);
     newO = this.spaceO[random];
+
     if (this.occupX.length === 2) {
       for (var i = 0; i < this.conditionWin.length; i++) {
         if (

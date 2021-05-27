@@ -43,8 +43,14 @@
           type="button"
           type="submit"
           class="btn btn-dark my-2 px-5 fw-bold"
+          [disabled]="!f.value.name || !f.value.avatar"
         >
-          Go!
+          {{
+            !name.value || name.value === " " || !f.value.avatar
+              ? "Enter ur infos"
+              : "Go!"
+          }}
+          {{ f.value.avatar }}
         </button>
       </form>
     </div>
