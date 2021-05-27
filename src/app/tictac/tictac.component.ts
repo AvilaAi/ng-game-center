@@ -87,17 +87,24 @@ export class TictacComponent implements OnInit {
     const random = Math.floor(Math.random() * this.spaceO.length);
     newO = this.spaceO[random];
 
-    if (this.occupX.length === 2) {
+    if (this.occupX.length >= 2) {
       for (var i = 0; i < this.conditionWin.length; i++) {
-        if (
-          this.ifWin(this.occupX, this.conditionWin[i]) === true &&
-          this.conditionWin[i].indexOf(this.occupO[0]) === -1
-        ) {
-          let missing = this.conditionWin[i].filter(
-            (item) => this.occupX.indexOf(item) < 0
+        var missing: number[] = [];
+        var xInWinLine = this.occupX.filter((val) => {
+          return this.conditionWin[i].indexOf(val) != -1;
+        });
+
+        if (xInWinLine.length === 2) {
+          missing = this.conditionWin[i].filter(
+            (item) =>
+              this.occupX.indexOf(item) < 0 && this.occupO.indexOf(item) < 0
           );
+        }
+        if (missing[0]) {
           newO = missing[0];
           break;
+        } else {
+          continue;
         }
       }
     }

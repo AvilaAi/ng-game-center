@@ -18,14 +18,17 @@ export class BirdComponent implements OnInit {
     this.user = JSON.parse(sessionStorage.getItem('user') || '');
   }
 
-  @ViewChild('space') space!: ElementRef;
-  @ViewChild('block ') block!: ElementRef;
   @ViewChild('character') character!: ElementRef;
+  @ViewChild('wall') wall!: ElementRef;
+  @ViewChild('wallTop') wallTop!: ElementRef;
+  @ViewChild('star') star!: ElementRef;
 
   counter = 0;
   jumping = 0;
   gameIsOver = true;
   gameInitial = true;
+  isGetStar = false;
+
   ngOnInit(): void {
     this.user = JSON.parse(sessionStorage.getItem('user') || '');
   }
@@ -34,17 +37,22 @@ export class BirdComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    const hole = this.space.nativeElement;
     const bird = this.character.nativeElement;
-    const block = this.block.nativeElement;
+    const wall = this.wall.nativeElement;
+    const wallTop = this.wallTop.nativeElement;
 
-    hole.addEventListener('animationiteration', () => {
-      var random = -(Math.random() * 300 + 150);
-      hole.style.top = random + 'px';
-      this.counter++;
+    wall.addEventListener('animationiteration', () => {
+      var random = Math.random() * 200 + 100;
+      if (random < 150) {
+        wallTop.style.height = random + 'px';
+      } else {
+        wallTop.style.height = 50 + 'px';
+      }
+      wall.style.height = random + 'px';
+      this.isGetStar = false;
     });
     bird.style.top = '10px';
-    this.gameStart(bird, block, hole);
+    this.gameStart();
   }
 
   countDown = setTimeout(() => {}, 100);
@@ -73,7 +81,12 @@ export class BirdComponent implements OnInit {
     }, 10);
   }
 
-  gameStart(character: any, block: any, hole: any) {
+  gameStart() {
+    const wall = this.wall.nativeElement;
+    const wallTop = this.wallTop.nativeElement;
+    const character = this.character.nativeElement;
+    const star = this.star.nativeElement;
+
     this.countDown = setInterval(() => {
       if (this.gameIsOver) {
         this.ngOnDestroy();
@@ -81,20 +94,43 @@ export class BirdComponent implements OnInit {
       var characterTop = parseInt(
         window.getComputedStyle(character).getPropertyValue('top')
       );
-      if (this.jumping === 0 && !this.gameIsOver && characterTop < 480) {
+      if (this.jumping === 0 && !this.gameIsOver && characterTop < 460) {
         character.style.top = characterTop + 3 + 'px';
       }
-      var blockLeft = parseInt(
-        window.getComputedStyle(block).getPropertyValue('left')
+
+      var wallBottom = parseInt(
+        window.getComputedStyle(wall).getPropertyValue('top')
       );
-      var holeTop = parseInt(
-        window.getComputedStyle(hole).getPropertyValue('top')
+      var wallTopEnd = parseInt(
+        window.getComputedStyle(wallTop).getPropertyValue('height')
+      );
+      var wallLeft = parseInt(
+        window.getComputedStyle(wall).getPropertyValue('left')
+      );
+      var starLeft = parseInt(
+        window.getComputedStyle(star).getPropertyValue('left')
+      );
+      var starTop = parseInt(
+        window.getComputedStyle(star).getPropertyValue('top')
       );
       var cTop = -(500 - characterTop);
+
       if (
-        blockLeft < 20 &&
-        blockLeft > -50 &&
-        (cTop < holeTop || cTop > holeTop + 130)
+        starLeft <= 40 &&
+        characterTop >= starTop - 40 &&
+        characterTop <= starTop + 40
+      ) {
+        if (this.isGetStar === false) {
+          this.counter++;
+          const randomStar = Math.floor(Math.random() * 300) + 100;
+          star.style.top = randomStar + 'px';
+        }
+        this.isGetStar = true;
+      }
+
+      if (
+        wallLeft < 30 &&
+        (characterTop < wallTopEnd || characterTop > wallBottom)
       ) {
         this.gameIsOver = true;
         this.ngOnDestroy();
