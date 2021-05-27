@@ -3,7 +3,7 @@
 <main
   class="container d-flex flex-column align-items-center justify-content-center"
 >
-  <h1 class="mt-5 mb-4 text-center">{{ title }}</h1>
+  <h1 class="mb-4 text-center">{{ title }}</h1>
   <div class="map container mt-2 p-0">
     <div
       class="line-x d-flex flex-row justify-content-center"
@@ -33,7 +33,9 @@
       }"
     >
       <div class="card-body">
-        <h3 class="card-title mt-5"> {{ firstStart ? "Use your keyboard :  ⬅️ ➡️ ⬆️" : "Game Over" }}</h3>
+        <h3 class="card-title mt-5">
+          {{ firstStart ? "Use your keyboard :  ⬅️ ➡️ ⬆️" : "Game Over" }}
+        </h3>
 
         <button class="btn btn-warning my-5" (click)="gameStart()">
           {{ firstStart ? "Start" : "Restart" }}

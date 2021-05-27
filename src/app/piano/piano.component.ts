@@ -11,6 +11,8 @@ export class PianoComponent implements OnInit {
   ngOnInit(): void {}
 
   notes = [
+    { note: 'c', keyCode: 67, src: '../../assets/audios/g2.mp3' },
+    { note: 'v', keyCode: 86, src: '../../assets/audios/g22.mp3' },
     { note: 'a', keyCode: 65, src: '../../assets/audios/a2.mp3' },
     { note: 'z', keyCode: 90, src: '../../assets/audios/a22.mp3' },
     { note: 'q', keyCode: 81, src: '../../assets/audios/b2.mp3' },
@@ -43,6 +45,10 @@ export class PianoComponent implements OnInit {
     {
       name: ' 🧹 Wingardium leviosaaaa',
       value: 'adgfd jh f dgfera adgfd jl ki yijua gd',
+    },
+    {
+      name: ' 👑 Winter is comming',
+      value: 'lruilril irhuirhi usghushu hsrghsrg rvsdrvdr gzdrgzrd shuilhuil',
     },
   ];
   tipActive = this.tips[1].value.split('');

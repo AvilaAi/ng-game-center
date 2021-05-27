@@ -7,7 +7,17 @@
     >
       Play with mouse or keyboard
     </h3>
-    <div class="d-flex justify-content-center mt-5" *ngIf="isPlayOnKey">
+    <div
+      class="
+        keynote-container
+        container-fluid
+        d-flex
+        flex-wrap
+        justify-content-center
+        mt-5
+      "
+      *ngIf="isPlayOnKey"
+    >
       <span
         *ngFor="let t of tipActive; let index = index"
         class="bg-light keynote text-center"
@@ -44,7 +54,7 @@
       </div>
       <span class="slider">
         🔊
-        <input type="range" id="volumRange" value="70" />
+        <input type="range" id="volumRange" value="50" />
         🔈
       </span>
     </div>

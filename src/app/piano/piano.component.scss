@@ -7,17 +7,21 @@
   border-bottom-left-radius: 10px;
   border-top: 5px solid brown;
   transition: all 0.2s;
-
+  @media (max-width: 991.98px) {
+    width: 60px;
+    height: 300px;
+  }
   &.playing {
     background: cornsilk;
   }
 
   &:nth-child(2),
-  &:nth-child(5),
+  &:nth-child(4),
   &:nth-child(7),
-  &:nth-child(10),
+  &:nth-child(9),
   &:nth-child(12),
-  &:nth-child(14) {
+  &:nth-child(14),
+  &:nth-child(16) {
     background: black;
     width: 60px;
     margin-left: -30px;
@@ -26,11 +30,20 @@
     z-index: 1;
     border-left: none;
     border-right: none;
-
+    @media (max-width: 991.98px) {
+      width: 40px;
+      height: 170px;
+      margin-left: -20px;
+      margin-right: -20px;
+    }
     &.playing {
       background: rgb(32, 43, 4);
     }
   }
+}
+
+.keynote-container {
+  max-width: 900px;
 }
 
 .keynote {
@@ -39,9 +52,10 @@
   border: 1px solid gray;
   transition: all 0.4s;
   font-size: 1.2rem;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  margin-bottom: 2px;
   &.high-light {
-    background: rgb(248, 220, 109) !important;
+    background: rgb(247, 216, 95) !important;
   }
   &:first-of-type {
     position: relative;
@@ -80,6 +94,6 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  margin-left: 40px;
+  margin-left: 30px;
   font-size: 20px;
 }
