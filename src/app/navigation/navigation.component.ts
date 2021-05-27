@@ -23,6 +23,6 @@ export class NavigationComponent implements OnInit {
     { name: 'tic-tac-toe', emoji: '⭕', link: '/tictac-component' },
     { name: 'cards', emoji: '🃏', link: '/card-component' },
     { name: 'bird', emoji: '🐤', link: '/bird-component' },
-    { name: 'piano', emoji: '🐤', link: '/piano-component' },
+    { name: 'piano', emoji: '🎹', link: '/piano-component' },
   ];
 }

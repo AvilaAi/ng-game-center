@@ -47,7 +47,11 @@ export class PianoComponent implements OnInit {
   playAudio(n: any) {
     var audio = new Audio(n.src);
     audio.play();
-    let keyPlayed = this.el.nativeElement.querySelector('#' + n.note);
+    var keyPlayed = this.el.nativeElement.querySelector('#' + n.note);
+    var vol = this.el.nativeElement.querySelector('#volumRange');
+    vol = (vol.value / 100).toFixed(1);
+
+    audio.volume = vol;
     keyPlayed.classList.add('playing');
     setTimeout(() => {
       keyPlayed.classList.remove('playing');
