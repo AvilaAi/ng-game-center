@@ -35,7 +35,8 @@
   justify-content: center;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  filter: brightness(80%);
+  transform: rotateX(0deg);
+  filter: brightness(85%);
   &:hover {
     filter: brightness(100%);
   }
