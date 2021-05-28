@@ -9,44 +9,41 @@ export class HomeComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-
+  ifGameNew(type: boolean) {
+    return this.games.filter((x) => x.isNew === type);
+  }
   games = [
     {
-      name: 'snake',
+      name: 'snake snack',
       photo: '../../assets/images/snake.png',
-      infos:
-        'Snake is the common name for a video game concept where the player maneuvers a line which grows in length, with the line itself being a primary obstacle.',
+      isNew: false,
+
       url: '../snake-component',
     },
     {
       name: 'tic-tac-toe',
       photo: '../../assets/images/tic-tac-toe.png',
-      infos:
-        'Tic-tac-toe is a paper-and-pencil game for two players, X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three of their marks in a diagonal, horizontal, or vertical row is the winner. ',
+      isNew: false,
+
       url: '../tictac-component',
     },
     {
-      name: 'memory',
+      name: 'memory card',
       photo: '../../assets/images/memory.png',
-      infos:
-        'Tic-tac-toe is a paper-and-pencil game for two players, X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three of their marks in a diagonal, horizontal, or vertical row is the winner. ',
+      isNew: false,
+
       url: '../card-component',
     },
-  ];
-
-  newGames = [
     {
       name: 'piano',
       photo: '../../assets/images/piano.png',
-      infos:
-        'Tic-tac-toe is a paper-and-pencil game for two players, X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three of their marks in a diagonal, horizontal, or vertical row is the winner. ',
+      isNew: true,
       url: '../piano-component',
     },
     {
       name: 'bird',
       photo: '../../assets/images/bird.png',
-      infos:
-        'Tic-tac-toe is a paper-and-pencil game for two players, X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three of their marks in a diagonal, horizontal, or vertical row is the winner. ',
+      isNew: true,
       url: '../bird-component',
     },
   ];

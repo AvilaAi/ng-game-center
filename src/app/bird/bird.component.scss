@@ -1,20 +1,20 @@
 $background-color: rgb(96, 173, 209);
 #playground {
-  width: 500px;
+  width: 600px;
   height: 500px;
-  border: 1px solid gray;
   margin: auto;
   overflow: hidden;
   position: relative;
   background: $background-color;
   background-image: url(../../assets/images/sky.png);
   background-size: cover;
+  border-radius: 10px;
 }
 #star {
   font-size: 30px;
   position: absolute;
   top: 200px;
-  left: 500px;
+  left: 600px;
   animation: block 2s infinite linear;
   animation-delay: 1s;
   display: flex;
@@ -29,7 +29,7 @@ $background-color: rgb(96, 173, 209);
   bottom: 0;
   background-image: url(../../assets/images/wall.png);
   background-repeat: repeat;
-  left: 500px;
+  left: 600px;
   animation: block 2s infinite linear;
 }
 
@@ -40,7 +40,7 @@ $background-color: rgb(96, 173, 209);
 
 @keyframes block {
   0% {
-    left: 500px;
+    left: 600px;
   }
   100% {
     left: -50px;
@@ -49,7 +49,7 @@ $background-color: rgb(96, 173, 209);
 
 @keyframes star {
   0% {
-    left: 500px;
+    left: 600px;
   }
   100% {
     left: -50px;

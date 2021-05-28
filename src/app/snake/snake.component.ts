@@ -6,12 +6,13 @@ import { Component, OnInit, HostListener } from '@angular/core';
   styleUrls: ['./snake.component.scss'],
 })
 export class SnakeComponent implements OnInit {
-  title = 'Petit Snake ';
+  title = 'Snake Snack';
   numbers = Array(30);
   middle = this.numbers.length / 2;
   snake = [
-    [this.middle, this.middle],
-    [this.middle - 1, this.middle - 1],
+    [this.middle - 3, this.middle + 1],
+    [this.middle - 4, this.middle + 1],
+    [this.middle - 5, this.middle + 1],
   ];
   snakeBody = [''];
   direction = 'E';
@@ -28,7 +29,9 @@ export class SnakeComponent implements OnInit {
   fruit = this.randomFruit(this.numbers.length);
 
   toSnakeString = (x: number, y: number) => x + '-' + y;
-
+  checkIndex() {
+    return 1;
+  }
   hasEatSelf(arr: string[]) {
     return new Set(arr).size !== arr.length;
   }
@@ -90,8 +93,9 @@ export class SnakeComponent implements OnInit {
 
   gameStart() {
     this.snake = [
-      [this.middle, this.middle],
-      [this.middle - 1, this.middle - 1],
+      [this.middle - 3, this.middle + 1],
+      [this.middle - 4, this.middle + 1],
+      [this.middle - 5, this.middle + 1],
     ];
     this.snakeBody = [''];
     this.direction = 'E';
@@ -103,53 +107,37 @@ export class SnakeComponent implements OnInit {
       this.snakeGo(this.direction);
     }, 100);
   }
-
+  initCod = 39;
   @HostListener('document:keydown', ['$event']) onKeydownHandler(
     event: KeyboardEvent
   ) {
-    if (event.keyCode === 39) {
-      switch (this.direction) {
-        case 'E':
-          this.direction = 'S';
-          break;
-        case 'S':
-          this.direction = 'W';
-          break;
-        case 'W':
-          this.direction = 'N';
-
-          break;
-        case 'N':
-          this.direction = 'E';
-          break;
-
-        default: {
-          break;
-        }
-      }
-    } else if (event.keyCode === 37) {
-      switch (this.direction) {
-        case 'E':
-          this.direction = 'N';
-          break;
-        case 'N':
-          this.direction = 'W';
-          break;
-        case 'W':
-          this.direction = 'S';
-
-          break;
-        case 'S':
-          this.direction = 'E';
-          break;
-
-        default: {
-          break;
-        }
-      }
-    } else if (event.keyCode === 38) {
+    if (this.initCod === event.keyCode) {
       this.snakeGo(this.direction);
-    } else if (event.keyCode === 32) {
+    }
+    this.initCod = event.keyCode;
+
+    if (event.keyCode === 39) {
+      if (this.direction !== 'W') {
+        this.direction = 'E';
+      }
+    }
+    if (event.keyCode === 37) {
+      if (this.direction !== 'E') {
+        this.direction = 'W';
+      }
+    }
+    if (event.keyCode === 38) {
+      if (this.direction !== 'S') {
+        this.direction = 'N';
+      }
+    }
+    if (event.keyCode === 40) {
+      if (this.direction !== 'N') {
+        this.direction = 'S';
+      }
+    }
+
+    if (event.keyCode === 32) {
       this.ngOnDestroy();
     }
   }

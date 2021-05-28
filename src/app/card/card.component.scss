@@ -9,8 +9,9 @@
   left: 0;
   right: 0;
   text-align: center;
-  top: 40%;
+  top: 20%;
   z-index: 1;
+  width: 30%;
 }
 .row.card-container {
   max-width: 680px;
@@ -34,6 +35,10 @@
   justify-content: center;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  filter: brightness(80%);
+  &:hover {
+    filter: brightness(100%);
+  }
 }
 
 .card-front {
@@ -44,4 +49,5 @@
   justify-content: center;
   transform: rotateY(180deg);
   background-color: antiquewhite;
+  filter: brightness(100%);
 }

@@ -15,6 +15,9 @@
             maxlength="10"
             #name="ngModel"
             autocomplete="off"
+            pattern="[A-Za-z]{1,10}"
+            ngNativeValidate
+            autofocus
           />
         </div>
 
@@ -43,13 +46,9 @@
           type="button"
           type="submit"
           class="btn btn-dark my-2 px-5 fw-bold"
-          [disabled]="!f.value.name || !f.value.avatar"
+          [disabled]="!f.valid"
         >
-          {{
-            !name.value || name.value === " " || !f.value.avatar
-              ? "Enter ur infos"
-              : "Go!"
-          }}
+          {{ !f.valid ? "Enter ur infos" : "Go!" }}
           {{ f.value.avatar }}
         </button>
       </form>

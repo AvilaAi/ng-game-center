@@ -6,6 +6,8 @@
 
 .card.shadow-lg {
   position: relative;
+  transition: all 0.4s ease-out;
+
   &::after {
     position: absolute;
     top: 0;
@@ -22,15 +24,42 @@
       -16px -22px 4px -25px rgba(0, 0, 0, 0);
     box-shadow: 0px 10px 13px -7px #000000,
       -16px -22px 4px -25px rgba(0, 0, 0, 0) !important;
-    transition: all 0.4s ease-out;
 
     &::after {
       opacity: 0;
       display: none;
+    }
+
+    .corner {
+      opacity: 0.9;
     }
   }
 }
 
 .card-img-top {
   max-height: 80%;
+}
+
+.corner {
+  width: 0;
+  height: 0;
+  border-bottom: 100px solid #ffcc00;
+  border-top: 100px solid transparent;
+  border-left: 100px solid transparent;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  transition: opacity 0.6s;
+
+  & span {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+
+    transform: translateY(80px) translateX(-10px) rotate(-45deg);
+    display: block;
+    font-size: 1.6rem;
+  }
 }

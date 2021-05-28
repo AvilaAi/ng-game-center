@@ -5,13 +5,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent implements OnInit {
+  title = 'Poké Memory';
   numbers = Array(16);
   checkedCard: number[] = [];
   randomArray: number[] = [];
   matchedCard: number[] = [];
   timer = 60;
+  random = 100;
   isGameStart = false;
   message = ' Turn over pairs of matching cards ';
+
   ngOnInit(): void {
     var a = [];
     var b = [];
@@ -23,7 +26,9 @@ export class CardComponent implements OnInit {
     b = this.shuffle(b);
 
     this.randomArray = a.concat(b);
-    console.log(this.randomArray);
+    this.random = Math.floor(Math.random() * 300) + 100;
+    this.checkedCard = [];
+    this.matchedCard = [];
   }
 
   countDown = setTimeout(() => {}, 1000);
@@ -34,18 +39,22 @@ export class CardComponent implements OnInit {
   }
 
   toStartGame() {
+    this.timer = 60;
     this.isGameStart = true;
     this.countDown = setInterval(() => {
       if (this.matchedCard.length === this.numbers.length) {
         this.isGameStart = false;
         this.message = 'You win';
         this.ngOnDestroy();
+        this.ngOnInit();
       }
       if (this.timer > 0) {
         this.timer--;
       } else {
         this.isGameStart = false;
         this.message = 'Game Over';
+        this.ngOnDestroy();
+        this.ngOnInit();
       }
     }, 1000);
   }
@@ -60,7 +69,7 @@ export class CardComponent implements OnInit {
 
       setTimeout(() => {
         this.checkedCard = [];
-      }, 800);
+      }, 900);
     }
   }
 

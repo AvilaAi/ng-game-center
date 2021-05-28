@@ -40,6 +40,7 @@ export class BirdComponent implements OnInit {
     const bird = this.character.nativeElement;
     const wall = this.wall.nativeElement;
     const wallTop = this.wallTop.nativeElement;
+    const star = this.star.nativeElement;
 
     wall.addEventListener('animationiteration', () => {
       var random = Math.random() * 200 + 100;
@@ -51,6 +52,13 @@ export class BirdComponent implements OnInit {
       wall.style.height = random + 'px';
       this.isGetStar = false;
     });
+
+    star.addEventListener('animationiteration', () => {
+      var random = Math.random() * 450 + 100;
+
+      star.style.top = random + 'px';
+    });
+
     bird.style.top = '10px';
     this.gameStart();
   }

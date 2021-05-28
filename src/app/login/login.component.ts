@@ -13,7 +13,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(f: NgForm) {
-    console.log(f.value);
     sessionStorage.setItem('user', JSON.stringify(f.value) || '');
     this.router.navigate(['./home-component']);
   }

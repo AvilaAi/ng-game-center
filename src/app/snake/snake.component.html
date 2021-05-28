@@ -1,9 +1,12 @@
 <app-navigation></app-navigation>
 
+<h2 class="mb-4 text-center">
+  {{ title }}
+  <span class="mx-4"> 🍔: {{ score }} </span>
+</h2>
 <main
   class="container d-flex flex-column align-items-center justify-content-center"
 >
-  <h1 class="mb-4 text-center">{{ title }}</h1>
   <div class="map container mt-2 p-0">
     <div
       class="line-x d-flex flex-row justify-content-center"
@@ -11,24 +14,33 @@
       id="{{ col }}"
     >
       <div
-        class="case p-0 m-0"
+        class="case m-0"
         *ngFor="let number of numbers; let row = index"
         id="{{ row + '-' + col }}"
+        indexOfSnake="checkIndex(2)"
         [ngStyle]="{
           'background-color':
             snakeBody.indexOf(row + '-' + col) !== -1
               ? '#73c7af'
-              : 'transparent'
+              : 'transparent',
+          opacity: 1 - snakeBody.indexOf(row + '-' + col) / 50,
+          'border-radius': snakeBody.indexOf(row + '-' + col) / 10 + 'px',
+          filter:
+            snakeBody.indexOf(row + '-' + col) === 0
+              ? 'brightness(1.25)'
+              : 'none'
         }"
         [ngClass]="{ fruitStyle: row + '-' + col === fruit }"
-      ></div>
+      >
+        {{ " " }}
+      </div>
     </div>
 
     <div
       class="card"
       [ngStyle]="{
         display: toggleCard ? 'flex' : 'none',
-        'background-color': '#353b48',
+        'background-color': 'transparent',
         border: 'none'
       }"
     >
@@ -42,8 +54,5 @@
         </button>
       </div>
     </div>
-  </div>
-  <div class="container d-flex align-items-center justify-content-center mt-3">
-    <h2>Score: {{ score }}</h2>
   </div>
 </main>

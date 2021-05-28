@@ -1,8 +1,8 @@
 <app-navigation></app-navigation>
 
-<h1 class="text-center mb-5">{{ title }}</h1>
+<h2 class="mb-4 text-center text-warning">{{ title }}</h2>
 
-<div class="container board">
+<div class="container board p-0 mt-3">
   <button
     class="btn btn-outline-secondary"
     type="button"
@@ -26,7 +26,7 @@
 </div>
 
 <div *ngIf="winner.length > 0" class="foot mt-5">
-  <h1 class="text-center">
+  <h2 class="text-center text-light">
     {{
       winner === x
         ? "You Win!"
@@ -34,8 +34,8 @@
         ? "Computer Wins!"
         : winner === nulGame && "Game Nul"
     }}
-  </h1>
-  <button class="btn btn-warning fw-bolder text-muted" (click)="ngOnInit()">
+  </h2>
+  <button class="btn btn-warning fw-bolder" (click)="ngOnInit()">
     Restart
   </button>
 </div>

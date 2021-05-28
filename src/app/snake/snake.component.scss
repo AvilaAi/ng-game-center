@@ -12,9 +12,9 @@ h3 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 80vmin;
+  width: 76vmin;
   border: 2px solid rgb(233, 218, 14);
-  background-color: #353b48;
+  background-color: transparent;
   position: relative;
 }
 
@@ -22,10 +22,11 @@ h3 {
   width: inherit;
 }
 .case {
-  height: 18px;
+  height: 0px;
   position: relative;
   display: inline-block;
   flex-grow: 1;
+  padding-bottom: 3%;
 }
 
 .case.fruitStyle::after {
@@ -33,7 +34,7 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 20px;
+  font-size: 1.5rem;
   border-radius: 50%;
   position: absolute;
   width: 100%;
