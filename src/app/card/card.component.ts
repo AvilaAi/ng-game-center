@@ -52,7 +52,7 @@ export class CardComponent implements OnInit {
         this.timer--;
       } else {
         this.isGameStart = false;
-        this.message = 'Game Over';
+        this.message = "Time's out";
         this.ngOnDestroy();
         this.ngOnInit();
       }
@@ -69,7 +69,7 @@ export class CardComponent implements OnInit {
 
       setTimeout(() => {
         this.checkedCard = [];
-      }, 900);
+      }, 850);
     }
   }
 

@@ -3,7 +3,7 @@
 
 <div class="container px-2">
   <div *ngIf="!isGameStart" class="modal-dialog m-auto shadow-lg rounded">
-    <div class="modal-content  d-block p-4 bg-dark text-light">
+    <div class="modal-content d-block p-4 bg-dark text-light">
       <h4 class="mb-5">{{ message }}</h4>
       <button class="btn btn-warning" (click)="toStartGame()">
         {{ timer === 0 ? "Restart" : "Start" }}
@@ -11,7 +11,9 @@
     </div>
   </div>
   <div class="row g-5 card-container m-auto">
-    <h5 class="col col-sm-12 mt-0 text-light">Time: {{ timer }}</h5>
+    <h5 class="col col-sm-12 mt-0">
+      <span class="badge bg-light text-dark"> Time: {{ timer }} </span>
+    </h5>
     <div
       class="col col-sm-4 col-md-3 my-2"
       *ngFor="let num of numbers; let i = index"

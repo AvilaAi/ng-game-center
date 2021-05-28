@@ -28,20 +28,20 @@ export class HomeComponent implements OnInit {
       url: '../tictac-component',
     },
     {
-      name: 'memory card',
+      name: 'poké memory',
       photo: '../../assets/images/memory.png',
       isNew: false,
 
       url: '../card-component',
     },
     {
-      name: 'piano',
+      name: 'real piano',
       photo: '../../assets/images/piano.png',
       isNew: true,
       url: '../piano-component',
     },
     {
-      name: 'bird',
+      name: 'fake bird',
       photo: '../../assets/images/bird.png',
       isNew: true,
       url: '../bird-component',
