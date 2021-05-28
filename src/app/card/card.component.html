@@ -1,7 +1,7 @@
 <app-navigation></app-navigation>
 <h2 class="mb-4 text-center text-warning">{{ title }}</h2>
 
-<div class="container px-2">
+<div class="container px-2 mb-2">
   <div *ngIf="!isGameStart" class="modal-dialog m-auto shadow-lg rounded">
     <div class="modal-content d-block p-4 bg-dark text-light">
       <h4 class="mb-5">{{ message }}</h4>
@@ -19,7 +19,7 @@
       *ngFor="let num of numbers; let i = index"
     >
       <div
-        class="container-fluid shadow-lg p-0 border-0"
+        class="container-fluid p-1 border-0"
         (click)="flipCard(i)"
         [ngClass]="
           checkedCard.indexOf(i) > -1 || matchedCard.indexOf(i) > -1
