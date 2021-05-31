@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   }
   ngOnInit() {
     sessionStorage.removeItem('user');
-    sessionStorage.setItem('user', '{"name": "default", "avatar": "👧"}');
+    sessionStorage.setItem('user', '{"name": "Toto", "avatar": "👧"}');
   }
   ngDoCheck() {
     this.checkUserLogin();

@@ -11,6 +11,7 @@
     [disabled]="
       currentPlayer === o || spaceO.indexOf(id) < 0 || winner.length > 0
     "
+    aria-label="button-clickble"
   >
     <p
       class="my-0"
@@ -23,6 +24,12 @@
       {{ occupO.indexOf(id) !== -1 ? "o" : "" }}
     </p>
   </button>
+  <div class="tips">
+    <p class="text-left text-light">
+      You: X <br />
+      Computer: O
+    </p>
+  </div>
 </div>
 
 <div *ngIf="winner.length > 0" class="foot mt-5">
@@ -38,11 +45,4 @@
   <button class="btn btn-warning fw-bolder" (click)="ngOnInit()">
     Restart
   </button>
-</div>
-
-<div *ngIf="winner.length < 1" class="foot mt-5">
-  <h4 class="text-left text-muted">
-    You: X <br />
-    Computer: O
-  </h4>
 </div>
