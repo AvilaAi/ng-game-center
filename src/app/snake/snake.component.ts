@@ -20,6 +20,7 @@ export class SnakeComponent implements OnInit {
 
   firstStart = true;
   toggleCard = true;
+  isBusy = false;
 
   randomFruit(max: number) {
     const x = Math.floor(Math.random() * max);
@@ -79,6 +80,7 @@ export class SnakeComponent implements OnInit {
     ) {
       this.ngOnDestroy();
     }
+    this.isBusy = false;
   }
 
   autoMove = setTimeout(() => {}, 100);
@@ -102,43 +104,46 @@ export class SnakeComponent implements OnInit {
     this.score = 0;
     this.firstStart = false;
     this.toggleCard = false;
-    this.snakeGo(this.direction);
-    this.autoMove = setInterval(() => {
-      this.snakeGo(this.direction);
+    this.autoMove = setInterval(async () => {
+      await this.snakeGo(this.direction);
     }, 100);
   }
   initCod = 39;
+
   @HostListener('document:keydown', ['$event']) onKeydownHandler(
     event: KeyboardEvent
   ) {
-    if (this.initCod === event.keyCode) {
-      this.snakeGo(this.direction);
-    }
-    this.initCod = event.keyCode;
+    if (!this.isBusy) {
+      this.isBusy = true;
+      if (this.initCod === event.keyCode) {
+        this.snakeGo(this.direction);
+      }
+      this.initCod = event.keyCode;
 
-    if (event.keyCode === 39) {
-      if (this.direction !== 'W') {
-        this.direction = 'E';
+      if (event.keyCode === 39) {
+        if (this.direction !== 'W') {
+          this.direction = 'E';
+        }
       }
-    }
-    if (event.keyCode === 37) {
-      if (this.direction !== 'E') {
-        this.direction = 'W';
+      if (event.keyCode === 37) {
+        if (this.direction !== 'E') {
+          this.direction = 'W';
+        }
       }
-    }
-    if (event.keyCode === 38) {
-      if (this.direction !== 'S') {
-        this.direction = 'N';
+      if (event.keyCode === 38) {
+        if (this.direction !== 'S') {
+          this.direction = 'N';
+        }
       }
-    }
-    if (event.keyCode === 40) {
-      if (this.direction !== 'N') {
-        this.direction = 'S';
+      if (event.keyCode === 40) {
+        if (this.direction !== 'N') {
+          this.direction = 'S';
+        }
       }
-    }
 
-    if (event.keyCode === 32) {
-      this.ngOnDestroy();
+      if (event.keyCode === 32) {
+        this.ngOnDestroy();
+      }
     }
   }
 }
