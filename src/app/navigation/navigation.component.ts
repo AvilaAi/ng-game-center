@@ -8,14 +8,14 @@ import { Component, OnInit } from '@angular/core';
 export class NavigationComponent implements OnInit {
   public user: any;
   constructor() {
-    this.user = JSON.parse(sessionStorage.getItem('user') || '');
+    this.user = JSON.parse(sessionStorage.getItem('user') || '{"name": "", "avatar": ""}');
   }
 
   ngOnInit(): void {
-    this.user = JSON.parse(sessionStorage.getItem('user') || '');
+    this.user = JSON.parse(sessionStorage.getItem('user') || '{"name": "", "avatar": ""}');
   }
   ngDoCheck() {
-    this.user = JSON.parse(sessionStorage.getItem('user') || '');
+    this.user = JSON.parse(sessionStorage.getItem('user') || '{"name": "", "avatar": ""}');
   }
   components = [
     { name: 'home', emoji: '🏠', link: '/home-component' },

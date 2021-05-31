@@ -30,7 +30,13 @@
     </div>
     <div class="col col-sm-3" *ngFor="let game of ifGameNew(true)">
       <div class="card shadow-lg p-1" type="button" routerLink="{{ game.url }}">
-        <img src="{{ game.photo }}" class="card-img-top" alt="snake game" />
+        <img
+          src="{{ game.photo }}"
+          width="220"
+          height="250"
+          class="card-img-top"
+          alt="snake game"
+        />
 
         <div class="card-footer d-flex justify-content-between">
           <span class="card-title m-0">{{ game.name }}</span>
