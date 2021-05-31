@@ -1,5 +1,5 @@
 .card-title {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: bolder;
   text-transform: capitalize;
 }
@@ -51,15 +51,22 @@
   right: 0;
   opacity: 0;
   transition: opacity 0.6s;
-
+  @media (max-width: 768px) {
+    display: none;
+  }
   & span {
     position: absolute;
     bottom: 0;
     right: 0;
     text-align: center;
-
     transform: translateY(80px) translateX(-10px) rotate(-45deg);
     display: block;
     font-size: 1.6rem;
+  }
+}
+
+.col {
+  @media (max-width: 576px) {
+    flex: auto;
   }
 }

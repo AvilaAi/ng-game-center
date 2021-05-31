@@ -1,32 +1,61 @@
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark px-5 mb-4">
   <div class="container-fluid">
     <a class="navbar-brand" href="#"> 🕹️ Game center</a>
+    <div class="ms-auto"></div>
+
+    <span class="text-light btn mx-3 fw-bolder" style="padding-bottom: 0">{{
+      "Welcome! " + user.name + user.avatar
+    }}</span>
     <button
-      class="navbar-toggler"
+      class="navbar-toggler position-relative"
       type="button"
       data-bs-toggle="collapse"
-      data-bs-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
       aria-expanded="false"
       aria-label="Toggle navigation"
+      (click)="isCollapsed = !isCollapsed"
     >
       <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="ms-auto"></div>
-      <div class="navbar-nav">
-        <span class="text-light btn mx-3 fw-bolder">{{
-          "Welcome! " + user.name + user.avatar
-        }}</span>
+      <span
+        class="bg-dark flex-column p-3 position-absolute m-auto"
+        style="
+          top: 30px;
+          left: -10px;
+          right: -10px;
+          text-align: center;
+          display: none;
+        "
+        [ngStyle]="{
+          display: isCollapsed ? 'none' : 'flex'
+        }"
+      >
         <a
+          *ngFor="let c of components"
           type="button"
-          class="btn btn-outline-warning"
-          routerLink="/home-component"
+          class="btn btn-outline-warning my-3"
+          routerLink="{{ c.link }}"
           routerLinkActive="active"
+          >{{ c.emoji }}</a
         >
-          🏠 Home</a
-        >
-      </div>
+      </span>
+    </button>
+
+    <div
+      class="collapse navbar-collapse"
+      [class.collapse]="true"
+      id="navbarNav"
+    >
+      <div class="ms-auto"></div>
+
+      <a
+        type="button"
+        class="btn btn-outline-warning"
+        routerLink="/home-component"
+        routerLinkActive="active"
+      >
+        🏠 Home</a
+      >
     </div>
   </div>
 </nav>

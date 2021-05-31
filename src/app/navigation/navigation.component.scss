@@ -10,7 +10,17 @@
 .side-bar {
   height: calc(100vh - 60px);
   position: absolute;
-  background-color: green;
   top: 60px;
   width: fit-content;
+}
+
+
+.navbar-collapse{
+  flex-grow: inherit;
+}
+
+@media (max-width: 768px) {
+  .side-bar {
+    display: none !important;
+  }
 }

@@ -25,4 +25,6 @@ export class NavigationComponent implements OnInit {
     { name: 'bird', emoji: '🐤', link: '/bird-component' },
     { name: 'piano', emoji: '🎹', link: '/piano-component' },
   ];
+
+  isCollapsed = true;
 }
