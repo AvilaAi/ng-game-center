@@ -13,7 +13,13 @@
         type="button"
         routerLink="{{ game.url }}"
       >
-        <img src="{{ game.photo }}" class="card-img-top" alt="snake game" />
+        <img
+          src="{{ game.photo }}"
+          class="card-img-top"
+          alt="snake game"
+          width="220"
+          height="250"
+        />
 
         <div class="card-body d-flex justify-content-between">
           <span class="card-title m-0">{{ game.name }}</span>
