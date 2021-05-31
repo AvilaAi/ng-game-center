@@ -150,8 +150,12 @@ export class BirdComponent implements OnInit {
   @HostListener('document:keydown.space', ['$event']) onKeydownHandler(
     event: KeyboardEvent
   ) {
-    const character = this.character.nativeElement;
-    this.jump(character);
+
+    
+    if (!this.gameIsOver) {
+      const character = this.character.nativeElement;
+      this.jump(character);
+    }
   }
 
   onClickStart() {

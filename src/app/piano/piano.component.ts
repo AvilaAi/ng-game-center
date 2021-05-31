@@ -69,6 +69,7 @@ export class PianoComponent implements OnInit {
   @HostListener('document:keydown', ['$event']) onKeydownHandler(
     event: KeyboardEvent
   ) {
+    if (event.repeat) return;
     const target = this.notes.find((obj) => {
       return obj.keyCode === event.keyCode;
     });
