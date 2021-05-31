@@ -1,5 +1,5 @@
 <app-navigation> </app-navigation>
-<div class="container d-flex flex-column" >
+<div class="container d-flex flex-column">
   <h3
     class="d-flex justify-content-center text-light text-center"
     *ngIf="!isPlayOnKey"
@@ -46,7 +46,7 @@
         class="key d-flex flex-column text-muted"
         *ngFor="let n of notes"
         id="{{ n.note }}"
-        (click)="playAudio(n)"
+        (pointerdown)="playAudio(n)"
       >
         <div class="text-center mt-auto mb-2">
           {{ n.note.toUpperCase() }}
