@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
     sessionStorage.removeItem('user');
     sessionStorage.setItem('user', '{"name": "default", "avatar": "👧"}');
   }
-  ngDoCheck() {
+ /*  ngDoCheck() {
     this.checkUserLogin();
-  }
+  } */
 }
