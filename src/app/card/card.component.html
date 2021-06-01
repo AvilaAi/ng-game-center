@@ -48,13 +48,18 @@
         }"
       >
         <div class="card card-front border-0">
-          <img
-            src="https://pokeres.bastionbot.org/images/pokemon/{{
-              randomArray[i] + random
-            }}.png"
-            alt="pokemon"
-            class="img-fluid img-thumbnail bg-transparent border-0"
-          />
+          <picture>
+            <source
+              srcset="{{ imgUrl + (randomArray[i] + random) }}.png"
+              type="image/png"
+            />
+            <img
+              src="{{ imgUrl + (randomArray[i] + random) }}.png"
+              alt="pokemon"
+              class="img-fluid img-thumbnail bg-transparent border-0"
+              width="120px"
+            />
+          </picture>
         </div>
         <div class="card card-back border-0 d-flex justify-content-center">
           <picture>

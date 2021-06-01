@@ -14,8 +14,8 @@ export class CardComponent implements OnInit {
   random = 100;
   isGameStart = false;
   message = ' Turn over pairs of matching cards ';
-  imgUrl = 'https://pokeres.bastionbot.org/images/pokemon/';
-  
+  imgUrl = '';
+
   ngOnInit(): void {
     var a = [];
     var b = [];
@@ -30,6 +30,10 @@ export class CardComponent implements OnInit {
     this.random = Math.floor(Math.random() * 300) + 100;
     this.checkedCard = [];
     this.matchedCard = [];
+  }
+
+  ngAfterViewInit() {
+    this.imgUrl = 'https://pokeres.bastionbot.org/images/pokemon/';
   }
 
   countDown = setTimeout(() => {}, 1000);
