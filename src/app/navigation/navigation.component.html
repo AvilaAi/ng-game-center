@@ -3,11 +3,13 @@
     <a class="navbar-brand" href="#"> 🕹️ Game center</a>
     <div class="ms-auto"></div>
 
-    <span class="text-light btn fw-bolder" style="padding-bottom: 0">{{
-      "Hello " + nameCapitalize + " ! "
-    }}</span>
+    <span
+      class="text-light btn fw-bolder"
+      style="padding-bottom: 0; cursor: default"
+      >{{ "Hello " + nameCapitalize + " !" }}</span
+    >
 
-    <button class="btn btn-outline-light mx-2" (click)="isPopup = true">
+    <button class="btn btn-outline-light mx-3" (click)="isPopup = true">
       {{ user.avatar + " Log out" }}
     </button>
     <button
