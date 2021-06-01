@@ -3,9 +3,13 @@
     <a class="navbar-brand" href="#"> 🕹️ Game center</a>
     <div class="ms-auto"></div>
 
-    <span class="text-light btn mx-3 fw-bolder" style="padding-bottom: 0">{{
-      "Welcome! " + user.name + user.avatar
+    <span class="text-light btn fw-bolder" style="padding-bottom: 0">{{
+      "Hello " + nameCapitalize + " ! "
     }}</span>
+
+    <button class="btn btn-outline-light mx-2" (click)="isPopup = true">
+      {{ user.avatar + " Log out" }}
+    </button>
     <button
       class="navbar-toggler position-relative"
       type="button"
@@ -69,4 +73,34 @@
     routerLinkActive="active"
     >{{ c.emoji }}</a
   >
+</div>
+
+<div
+  *ngIf="isPopup"
+  class="
+    warning
+    container-fluid
+    position-absolute
+    d-flex
+    justify-content-center
+    align-items-center
+  "
+  style="
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.274);
+  "
+>
+  <div class="card text-center bg-dark p-5 border border-light">
+    <div class="card-body">
+      <h5 class="card-title text-light">{{ user.avatar + nameCapitalize }}</h5>
+      <p class="card-text text-light mb-5">Do you really want to log out ?</p>
+      <button (click)="isPopup = false" class="btn btn-outline-light mx-3">
+        Not Really
+      </button>
+      <button (click)="logOut()" class="btn btn-light mx-3">Log Out</button>
+    </div>
+  </div>
 </div>

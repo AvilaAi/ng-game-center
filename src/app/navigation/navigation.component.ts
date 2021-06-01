@@ -7,15 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
   public user: any;
+  nameCapitalize = '';
   constructor() {
-    this.user = JSON.parse(sessionStorage.getItem('user') || '{"name": "", "avatar": ""}');
+    this.user = JSON.parse(
+      sessionStorage.getItem('user') || '{"name": "", "avatar": ""}'
+    );
+    this.nameCapitalize =
+      this.user.name[0].toUpperCase() + this.user.name.slice(1);
   }
 
   ngOnInit(): void {
-    this.user = JSON.parse(sessionStorage.getItem('user') || '{"name": "", "avatar": ""}');
+    this.user = JSON.parse(
+      sessionStorage.getItem('user') || '{"name": "", "avatar": ""}'
+    );
   }
   ngDoCheck() {
-    this.user = JSON.parse(sessionStorage.getItem('user') || '{"name": "", "avatar": ""}');
+    this.user = JSON.parse(
+      sessionStorage.getItem('user') || '{"name": "", "avatar": ""}'
+    );
   }
   components = [
     { name: 'home', emoji: '🏠', link: '/home-component' },
@@ -27,4 +36,8 @@ export class NavigationComponent implements OnInit {
   ];
 
   isCollapsed = true;
+  isPopup = false;
+  logOut() {
+    sessionStorage.removeItem('user');
+  }
 }
