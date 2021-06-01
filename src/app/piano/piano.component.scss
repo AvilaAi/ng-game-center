@@ -76,7 +76,7 @@
 #volumRange {
   transform: rotate(-90deg);
   display: flex;
-  width: 200px;
+  width: 120px;
   height: 20px;
   &:hover {
     cursor: pointer;
@@ -84,11 +84,13 @@
 }
 
 .slider {
-  width: 20px;
+  width: 30px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   margin-left: 30px;
   font-size: 20px;
+  border-radius: 0.4em;
+  background-color: rgb(255, 255, 255);
 }
