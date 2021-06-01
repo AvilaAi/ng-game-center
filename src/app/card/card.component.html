@@ -18,11 +18,19 @@
       <span class="badge bg-light text-dark"> Time: {{ timer }} </span>
     </h5>
     <div
-      class="col col-sm-4 col-md-3 my-2"
+      class="col col-xs-4 col-md-3 my-2"
       *ngFor="let num of numbers; let i = index"
+      style="flex: auto"
     >
       <div
-        class="container-fluid p-1 border-0"
+        class="
+          card-item
+          container-fluid
+          border-0
+          d-flex
+          justify-content-center
+          align-items-center
+        "
         (click)="flipCard(i)"
         [ngClass]="
           checkedCard.indexOf(i) > -1 || matchedCard.indexOf(i) > -1
@@ -39,16 +47,25 @@
               : 'auto'
         }"
       >
-        <div class="card card-front">
+        <div class="card card-front border-0">
           <img
             src="https://pokeres.bastionbot.org/images/pokemon/{{
               randomArray[i] + random
             }}.png"
             alt="pokemon"
+            class="img-fluid img-thumbnail bg-transparent border-0"
           />
         </div>
-        <div class="card card-back p-0 border-0">
-          <img src="../../assets/images/pokemon-card-back.png" alt="pokemon" />
+        <div class="card card-back border-0 d-flex justify-content-center">
+          <picture>
+            <source srcset="../../assets/images/card.webp" type="image/webp" />
+            <source srcset="../../assets/images/card.png" type="image/png" />
+            <img
+              src="../../assets/images/card.png"
+              alt="pokemon"
+              width="120px"
+            />
+          </picture>
         </div>
       </div>
     </div>

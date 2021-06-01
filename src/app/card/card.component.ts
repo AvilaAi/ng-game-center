@@ -14,7 +14,8 @@ export class CardComponent implements OnInit {
   random = 100;
   isGameStart = false;
   message = ' Turn over pairs of matching cards ';
-
+  imgUrl = 'https://pokeres.bastionbot.org/images/pokemon/';
+  
   ngOnInit(): void {
     var a = [];
     var b = [];
