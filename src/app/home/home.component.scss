@@ -65,8 +65,8 @@
   }
 }
 
-.col {
+.col.col-6 {
   @media (max-width: 576px) {
-    flex: auto;
+    margin-bottom: 10px;
   }
 }
