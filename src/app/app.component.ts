@@ -30,9 +30,6 @@ export class AppComponent implements OnInit {
     }
   }
   ngOnInit() {
-    sessionStorage.removeItem('user');
-    sessionStorage.setItem('user', '{"name": "Toto", "avatar": "👧"}');
-
     this.metaService.addTags([
       {name: 'keywords', content: 'Angular, Snake, Games, Piano '},
       {name: 'robots', content: 'index, follow'}
