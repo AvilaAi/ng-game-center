@@ -30,6 +30,7 @@
           d-flex
           justify-content-center
           align-items-center
+         
         "
         (click)="flipCard(i)"
         [ngClass]="
@@ -47,7 +48,7 @@
               : 'auto'
         }"
       >
-        <div class="card card-front border-0">
+        <div *ngIf="imgUrl.length > 0" class="card card-front border-0">
           <picture>
             <source
               srcset="{{ imgUrl + (randomArray[i] + random) }}.png"
@@ -61,7 +62,16 @@
             />
           </picture>
         </div>
-        <div class="card card-back border-0 d-flex justify-content-center">
+        <div
+          class="
+            card card-back
+            d-flex
+            justify-content-center
+            border border-secondary
+            rounded-2
+            overflow-hidden
+          "
+        >
           <picture>
             <source srcset="../../assets/images/card.webp" type="image/webp" />
             <source srcset="../../assets/images/card.png" type="image/png" />

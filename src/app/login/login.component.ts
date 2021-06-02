@@ -8,17 +8,21 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private router: Router) {
-  }
+  constructor(private router: Router) {}
 
-  ngOnInit(): void {
-    if (sessionStorage.getItem("user")){
+  ngOnInit(): void {}
+
+  ngAfterviewInit() {
+    if (sessionStorage.getItem('user')) {
       this.router.navigate(['./home-component']);
     }
   }
 
   onSubmit(f: NgForm) {
-    sessionStorage.setItem('user', JSON.stringify(f.value) || '{"name": "", "avatar": ""}');
+    sessionStorage.setItem(
+      'user',
+      JSON.stringify(f.value) || '{"name": "", "avatar": ""}'
+    );
     this.router.navigate(['./home-component']);
   }
 

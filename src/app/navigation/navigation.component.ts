@@ -12,20 +12,22 @@ export class NavigationComponent implements OnInit {
     this.user = JSON.parse(
       sessionStorage.getItem('user') || '{"name": "", "avatar": ""}'
     );
-    this.nameCapitalize =
-      this.user.name[0].toUpperCase() + this.user.name.slice(1);
+    // this.nameCapitalize =
+    //   this.user.name[0].toUpperCase() + this.user.name.slice(1);
   }
 
   ngOnInit(): void {
     this.user = JSON.parse(
       sessionStorage.getItem('user') || '{"name": "", "avatar": ""}'
     );
+
+    console.log(this.user);
   }
-  ngDoCheck() {
-    this.user = JSON.parse(
-      sessionStorage.getItem('user') || '{"name": "", "avatar": ""}'
-    );
-  }
+  // ngDoCheck() {
+  //   this.user = JSON.parse(
+  //     sessionStorage.getItem('user') || '{"name": "", "avatar": ""}'
+  //   );
+  // }
   components = [
     { name: 'home', emoji: '🏠', link: '/home-component' },
     { name: 'snake', emoji: '🐍', link: '/snake-component' },

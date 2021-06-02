@@ -32,7 +32,7 @@ export class CardComponent implements OnInit {
     this.matchedCard = [];
   }
 
-  ngAfterViewInit() {
+  ngAfterContentInit() {
     this.imgUrl = 'https://pokeres.bastionbot.org/images/pokemon/';
   }
 
@@ -44,6 +44,7 @@ export class CardComponent implements OnInit {
   }
 
   toStartGame() {
+    this.ngOnInit();
     this.timer = 60;
     this.isGameStart = true;
     this.countDown = setInterval(() => {
@@ -51,7 +52,6 @@ export class CardComponent implements OnInit {
         this.isGameStart = false;
         this.message = 'You win';
         this.ngOnDestroy();
-        this.ngOnInit();
       }
       if (this.timer > 0) {
         this.timer--;
@@ -59,7 +59,6 @@ export class CardComponent implements OnInit {
         this.isGameStart = false;
         this.message = "Time's out";
         this.ngOnDestroy();
-        this.ngOnInit();
       }
     }, 1000);
   }

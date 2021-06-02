@@ -18,17 +18,18 @@ export class AppComponent implements OnInit {
 
 
 
-  checkUserLogin() {
-    let JSONInformation = JSON.parse(
-      sessionStorage.getItem('user') || '{"name": "", "avatar": ""}'
-    );
-    if (
-      (JSONInformation.name == '' || JSONInformation.avatar == '') &&
-      this.router.url != '/'
-    ) {
-      this.router.navigate(['/']);
-    }
-  }
+  // checkUserLogin() {
+  //   let JSONInformation = JSON.parse(
+  //     sessionStorage.getItem('user') || '{"name": "", "avatar": ""}'
+  //   );
+  //   if (
+  //     (JSONInformation.name == '' || JSONInformation.avatar == '') &&
+  //     this.router.url != '/'
+  //   ) {
+  //     this.router.navigate(['/']);
+  //   }
+  // }
+
   ngOnInit() {
     this.metaService.addTags([
       {name: 'keywords', content: 'Angular, Snake, Games, Piano '},
@@ -42,7 +43,7 @@ export class AppComponent implements OnInit {
       });
   }
 
-  ngDoCheck() {
-    this.checkUserLogin();
-  }
+  // ngDoCheck() {
+  //   this.checkUserLogin();
+  // }
 }

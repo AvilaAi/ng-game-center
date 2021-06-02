@@ -15,7 +15,9 @@ export class BirdComponent implements OnInit {
   public user: any;
 
   constructor() {
-    this.user = JSON.parse(sessionStorage.getItem('user') || '');
+    this.user = JSON.parse(
+      sessionStorage.getItem('user') || '{"name": "", "avatar": ""}'
+    );
   }
 
   @ViewChild('character') character!: ElementRef;
@@ -30,11 +32,11 @@ export class BirdComponent implements OnInit {
   isGetStar = false;
 
   ngOnInit(): void {
-    this.user = JSON.parse(sessionStorage.getItem('user') || '');
+    this.user = JSON.parse(
+      sessionStorage.getItem('user') || '{"name": "", "avatar": ""}'
+    );
   }
-  ngDoCheck() {
-    this.user = JSON.parse(sessionStorage.getItem('user') || '');
-  }
+
 
   ngAfterViewInit() {
     const bird = this.character.nativeElement;
@@ -150,8 +152,6 @@ export class BirdComponent implements OnInit {
   @HostListener('document:keydown.space', ['$event']) onKeydownHandler(
     event: KeyboardEvent
   ) {
-
-    
     if (!this.gameIsOver) {
       const character = this.character.nativeElement;
       this.jump(character);
