@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'card-component', component: CardComponent },
   { path: 'piano-component', component: PianoComponent },
 
-  { path: '**', component: HomeComponent },
+  { path: '**', component: LoginComponent },
 ];
 
 @NgModule({

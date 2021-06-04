@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -8,12 +9,13 @@ import { Component, OnInit } from '@angular/core';
 export class NavigationComponent implements OnInit {
   public user: any;
   nameCapitalize = '';
-  constructor() {
+  
+  constructor(private router: Router,) {
     this.user = JSON.parse(
-      sessionStorage.getItem('user') || '{"name": "", "avatar": ""}'
+      sessionStorage.getItem('user') || '{"name": " ", "avatar": " "}'
     );
-    // this.nameCapitalize =
-    //   this.user.name[0].toUpperCase() + this.user.name.slice(1);
+    this.nameCapitalize =
+      this.user.name[0].toUpperCase() + this.user.name.slice(1);
   }
 
   ngOnInit(): void {
@@ -21,7 +23,6 @@ export class NavigationComponent implements OnInit {
       sessionStorage.getItem('user') || '{"name": "", "avatar": ""}'
     );
 
-    console.log(this.user);
   }
   // ngDoCheck() {
   //   this.user = JSON.parse(
@@ -41,5 +42,6 @@ export class NavigationComponent implements OnInit {
   isPopup = false;
   logOut() {
     sessionStorage.removeItem('user');
+    this.router.navigate(['/'])
   }
 }

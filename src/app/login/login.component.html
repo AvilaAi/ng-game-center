@@ -1,9 +1,33 @@
 <div class="container-fluid container-login">
-  <div class="card text-center px-5 py-3 border border-dark border-5 shadow-lg">
+  <div
+    class="
+      login-card
+      card
+      text-center
+      px-5
+      py-3
+      border border-dark border-5
+      shadow-lg
+    "
+  >
     <div class="card-body">
       <h1 class="card-title fw-bold pe-3">🕹️ Game center</h1>
+      <div class="d-flex justify-content-evenly mt-5">
+        <button
+          class="btn btn-outline-dark"
+          (click)="isNew = true"
+         [class.active]="isNew"
+        >
+          <span *ngIf="isNew">👌</span>
+          New player
+        </button>
+        <button class="btn btn-outline-dark" (click)="isNew = false" [class.active]="!isNew">
+          <span *ngIf="!isNew">👌</span> Sign in
+        </button>
+      </div>
+
       <form #f="ngForm" (ngSubmit)="onSubmit(f)">
-        <div class="mt-5">
+        <div class="mt-2">
           <label class="h5" for="name">Your name :</label>
 
           <input
@@ -20,8 +44,25 @@
             id="name"
           />
         </div>
+        <div class="mt-2">
+          <label class="h5" for="name">Password :</label>
 
-        <div class="my-4">
+          <input
+            type="password"
+            class="form-control text-center border border-dark fw-bold"
+            ngModel
+            name="password"
+            required
+            maxlength="20"
+            #name="ngModel"
+            autocomplete="off"
+            pattern="[^\s]{1,20}"
+            autofocus
+            id="password"
+          />
+        </div>
+
+        <div class="my-4" *ngIf="isNew">
           <p class="h5">You are :</p>
           <span *ngFor="let avatar of avatars; let index = index">
             <input

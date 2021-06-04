@@ -50,5 +50,12 @@
         <div class="corner"><span>Go! </span></div>
       </div>
     </div>
+    <div class="col col-12 col-md-9 my-5">
+      <div class="card">
+        <h4 *ngFor="let s of scores">
+          {{ s.name + s.topScore + s.gameName + s.avatar }}
+        </h4>
+      </div>
+    </div>
   </div>
 </div>
