@@ -7,75 +7,57 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SudokuComponent implements OnInit {
   numbers = Array(9);
-  grid = [
-    [0, 0, 6, 0, 3, 0, 7, 0, 0],
-    [0, 3, 0, 5, 0, 8, 0, 9, 0],
-    [8, 0, 0, 4, 0, 7, 0, 0, 6],
-    [0, 9, 0, 0, 0, 0, 0, 3, 0],
-    [0, 0, 0, 8, 2, 9, 0, 0, 0],
-    [0, 6, 0, 0, 0, 0, 0, 2, 0],
-    [3, 0, 0, 6, 0, 4, 0, 0, 9],
-    [0, 4, 0, 2, 0, 1, 0, 8, 0],
-    [0, 0, 1, 0, 5, 0, 2, 0, 0],
-  ];
-  firstCase = [];
+  solution = 0;
+
+  grid: number[][] = [[]];
+  gridToComplete: number[][] = [[]];
+  hiddenCase: string[] = [];
   constructor() {}
-  allNumbers: number[][] = [[]];
+
   ngOnInit(): void {
     for (var a = [], i = 0; i < this.numbers.length; ++i) {
       a[i] = i + 1;
       this.grid[i] = new Array(9).fill(0);
     }
+    this.initThreeCase(0, 0);
+    this.initThreeCase(3, 3);
+    this.initThreeCase(6, 6);
+    this.solve(this.grid);
 
-    this.firstCase = this.shuffle(a);
-    this.allNumbers[0] = this.firstCase;
-    // this.generateNumber(1);
-    console.log(`this.grid`, this.grid);
-    // this.solve(this.grid);
+    this.randomEspace(30);
+    console.log(this.hiddenCase);
   }
 
-  generateNumber(indexCase: number) {
-    var random = this.shuffle([...this.firstCase]);
-    var newCase = [];
-    console.log(`random`, random);
-    var preCaseX = this.allNumbers[indexCase - 1];
-    var preCaseY;
-    if (indexCase !== (1 || 3 || 8)) {
-      preCaseX = [...preCaseX].concat(this.allNumbers[indexCase - 2]);
-    }
-    if (indexCase > 5) {
-      preCaseY = this.allNumbers[indexCase - 3].concat(
-        this.allNumbers[indexCase - 6]
-      );
-    } else if (indexCase > 2) {
-      preCaseY = this.allNumbers[indexCase - 3];
-    }
-    for (let i = 0; i < 8; i++) {
-      var preX: number[] = [];
-      var preY: number[] = [];
-
-      if (i < 3) {
-        preX = preCaseX.slice(0, 3).concat(preCaseX.slice(9, 12));
-      } else if (i < 6) {
-        preX = preCaseX.slice(3, 6).concat(preCaseX.slice(12, 15));
-      } else {
-        preX = preCaseX.slice(6, 9).concat(preCaseX.slice(15, 18));
+  randomEspace(level: number) {
+    console.log(
+      JSON.stringify(this.gridToComplete) === JSON.stringify(this.grid)
+    );
+    for (let index = 0; index < level; index++) {
+      var randomY = Math.floor(Math.random() * 9);
+      var randomX = Math.floor(Math.random() * 9);
+      var toHidden = randomY + '-' + randomX;
+      if (this.hiddenCase.indexOf(toHidden) < 0) {
+        this.hiddenCase.push(toHidden);
+        this.gridToComplete[randomY][randomX] = 0;
       }
-      var num = random.find((n: number) => preX.indexOf(n) < 0);
-      if (!num) {
-        this.generateNumber(1);
-        break;
-      }
-      newCase.push(num);
-      console.log(`num`, num);
-      console.log(`preX`, preX);
-      const indexOfNum = random.indexOf(num);
-      random.splice(indexOfNum, 1);
-
-      this.allNumbers[indexCase] = [...newCase];
     }
-    console.log(`this.allNumbers[0]`, this.allNumbers[0]);
-    console.log('generate', this.allNumbers[indexCase]);
+    console.log('this.gridToComplete', this.gridToComplete);
+    console.log('grid', this.grid);
+  }
+
+  initThreeCase(x: number, y: number) {
+    for (var a = [], i = 0; i < this.numbers.length; ++i) {
+      a[i] = i + 1;
+    }
+    var random = this.shuffle(a);
+    var r = 0;
+
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        this.grid[y + i][x + j] = random[r];
+        r += 1;
+      }
+    }
   }
 
   shuffle(array: any) {
@@ -115,9 +97,11 @@ export class SudokuComponent implements OnInit {
 
     return true;
   }
-  solution = 0;
 
   solve(grid: number[][]) {
+    if (this.solution > 0) {
+      return;
+    }
     for (let y = 0; y < 9; y++) {
       for (let x = 0; x < 9; x++) {
         if (grid[y][x] === 0) {
@@ -134,8 +118,8 @@ export class SudokuComponent implements OnInit {
     }
 
     this.solution += 1;
-    // console.log(`grid`, [...grid]);
 
-    console.log(`this.solution`, this.solution);
+    this.grid = JSON.parse(JSON.stringify(this.grid));
+    this.gridToComplete = JSON.parse(JSON.stringify(this.grid));
   }
 }

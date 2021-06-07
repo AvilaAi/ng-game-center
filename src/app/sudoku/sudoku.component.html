@@ -1,26 +1,23 @@
-<p>sudoku works!</p>
-<div class="gird-container bg-dark">
-  <span class="border border-warning" *ngFor="let n of numbers; let z = index">
-    <div style="width: fit-content" *ngFor="let n of [0, 1, 2]">
-      <button
-        style="width: 40px; height: 40px"
-        class="btn btn-outline-light p-3"
-        *ngFor="let n of [0, 1, 2]"
-      >
-        {{ " z=" + z }}
-      </button>
-    </div>
-  </span>
-</div>
+<app-navigation></app-navigation>
+
 <br />
 <br />
 <div class="gird-container">
-  <div
-    class="gird-case border border-warning"
-    *ngFor="let n of numbers; let z = index"
-  >
-    <span class="grid-item" *ngFor="let n of numbers; let index = index">{{
-      z + "-" + index + "=" + firstCase[index]
-    }}</span>
+  <div class="gird-case" *ngFor="let n of numbers; let y = index">
+    <div class="grid-item" *ngFor="let n of numbers; let x = index">
+      <span
+        [ngStyle]="{
+          visibility: hiddenCase.indexOf(y + '-' + x) < 0 ? 'true' : 'hidden'
+        }"
+      >
+        {{ hiddenCase.indexOf(y + "-" + x) < 0 ? grid[y][x] : "0" }}
+      </span>
+  
+
+        <input  [ngStyle]="{
+          display: hiddenCase.indexOf(y + '-' + x) < 0 ? 'none' : 'auto'
+        }" class="input-case" type="text" />
+     
+    </div>
   </div>
 </div>
