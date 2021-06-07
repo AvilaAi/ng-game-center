@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { PianoComponent } from './piano/piano.component';
 import { SnakeComponent } from './snake/snake.component';
+import { SudokuComponent } from './sudoku/sudoku.component';
 import { TictacComponent } from './tictac/tictac.component';
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'bird-component', component: BirdComponent },
   { path: 'card-component', component: CardComponent },
   { path: 'piano-component', component: PianoComponent },
+  { path: 'sudoku-component', component: SudokuComponent },
 
   { path: '**', component: LoginComponent },
 ];

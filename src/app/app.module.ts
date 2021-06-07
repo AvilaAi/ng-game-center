@@ -12,6 +12,7 @@ import { BirdComponent } from './bird/bird.component';
 import { CardComponent } from './card/card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PianoComponent } from './piano/piano.component';
+import { SudokuComponent } from './sudoku/sudoku.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { PianoComponent } from './piano/piano.component';
     BirdComponent,
     CardComponent,
     PianoComponent,
+    SudokuComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
