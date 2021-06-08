@@ -31,6 +31,9 @@
     right: 0;
     height: calc(inherit - 2px);
     width: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -38,8 +41,11 @@
   display: flex;
   margin: auto;
   background-color: #2196f3;
+  color: rgba(0, 0, 0, 0.7);
   width: 63vmin;
   grid-template-columns: repeat(9);
+  user-select: none;
+
   &:nth-child(3n + 3) {
     border-bottom: 1px solid teal;
     & .grid-item {
@@ -55,13 +61,30 @@
   }
 }
 
-input.input-case {
+.input-case {
   background-color: rgba(255, 255, 255, 0.8);
   border: none;
   text-align: center;
   width: 6.5vmin !important;
-  &:focus {
-    outline: none;
-    background: wheat;
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'> ✏️</text></svg>")
+      16 0,
+    auto;
+}
+
+.button-group {
+  display: flex;
+  width: 63vmin;
+  height: 63vmin;
+  margin-top: 4vmin;
+  & .button-item {
+    height: fit-content;
+    flex: 1 0 auto;
+    text-align: center;
+    font-size: 3vmin;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5vmin;
+    padding: 0;
   }
 }

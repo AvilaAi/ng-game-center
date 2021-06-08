@@ -11,15 +11,15 @@ import { TictacComponent } from './tictac/tictac.component';
 
 const routes: Routes = [
   {
-    path: 'snake-component',
+    path: 'snake',
     component: SnakeComponent,
   },
-  { path: 'tictac-component', component: TictacComponent },
-  { path: 'home-component', component: HomeComponent },
-  { path: 'bird-component', component: BirdComponent },
-  { path: 'card-component', component: CardComponent },
-  { path: 'piano-component', component: PianoComponent },
-  { path: 'sudoku-component', component: SudokuComponent },
+  { path: 'tictac', component: TictacComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'bird', component: BirdComponent },
+  { path: 'card', component: CardComponent },
+  { path: 'piano', component: PianoComponent },
+  { path: 'sudoku', component: SudokuComponent },
 
   { path: '**', component: LoginComponent },
 ];

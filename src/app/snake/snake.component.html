@@ -56,3 +56,9 @@
     </div>
   </div>
 </main>
+
+<div class="card" *ngIf="scores">
+  <div class="card-body" *ngFor="let s of scores">
+   nname: {{ s.name }} socre:{{s.score}}
+  </div>
+</div>

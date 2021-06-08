@@ -2,22 +2,43 @@
 
 <br />
 <br />
-<div class="gird-container">
-  <div class="gird-case" *ngFor="let n of numbers; let y = index">
-    <div class="grid-item" *ngFor="let n of numbers; let x = index">
-      <span
-        [ngStyle]="{
-          visibility: hiddenCase.indexOf(y + '-' + x) < 0 ? 'true' : 'hidden'
-        }"
-      >
-        {{ hiddenCase.indexOf(y + "-" + x) < 0 ? grid[y][x] : "0" }}
-      </span>
-  
+<div class="container">
+  <div class="gird-container">
+    <div class="gird-case" *ngFor="let n of numbers; let y = index">
+      <div class="grid-item" *ngFor="let n of numbers; let x = index">
+        <span
+          [ngStyle]="{
+            visibility: hiddenCase.indexOf(y + '-' + x) < 0 ? 'true' : 'hidden'
+          }"
+        >
+          {{ hiddenCase.indexOf(y + "-" + x) < 0 ? grid[y][x] : " " }}
+        </span>
 
-        <input  [ngStyle]="{
-          display: hiddenCase.indexOf(y + '-' + x) < 0 ? 'none' : 'auto'
-        }" class="input-case" type="text" />
-     
+        <span
+          class="input-case"
+          (click)="clickToInput(y, x)"
+          *ngIf="hiddenCase.indexOf(y + '-' + x) > -1"
+          [ngStyle]="{
+            background: isActive === y + '-' + x ? 'lemonchiffon' : 'inherit',
+            color: gridToComplete[y][x] === grid[y][x] ? 'green' : 'red'
+          }"
+        >
+          {{ gridToComplete[y][x] > 0 ? gridToComplete[y][x] : " " }}
+        </span>
+      </div>
     </div>
+  </div>
+
+  <div class="button-group mx-auto">
+    <button
+    type="button"
+
+      class="btn btn-outline-light button-item "
+      *ngFor="let n of numbers; let i = index"
+      id="{{ i + 1 }}"
+      (click)="selectNumber(i + 1)"
+    >
+      {{ i + 1 }}
+  </button>
   </div>
 </div>

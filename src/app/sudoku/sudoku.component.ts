@@ -12,6 +12,9 @@ export class SudokuComponent implements OnInit {
   grid: number[][] = [[]];
   gridToComplete: number[][] = [[]];
   hiddenCase: string[] = [];
+
+  isActive = '';
+
   constructor() {}
 
   ngOnInit(): void {
@@ -25,7 +28,7 @@ export class SudokuComponent implements OnInit {
     this.solve(this.grid);
 
     this.randomEspace(30);
-    console.log(this.hiddenCase);
+
   }
 
   randomEspace(level: number) {
@@ -41,8 +44,7 @@ export class SudokuComponent implements OnInit {
         this.gridToComplete[randomY][randomX] = 0;
       }
     }
-    console.log('this.gridToComplete', this.gridToComplete);
-    console.log('grid', this.grid);
+
   }
 
   initThreeCase(x: number, y: number) {
@@ -121,5 +123,22 @@ export class SudokuComponent implements OnInit {
 
     this.grid = JSON.parse(JSON.stringify(this.grid));
     this.gridToComplete = JSON.parse(JSON.stringify(this.grid));
+  }
+
+  clickToInput(y: number, x: number) {
+ 
+    this.isActive = y + '-' + x;
+    
+  }
+
+  selectNumber(n: number) {
+   
+
+    if (this.isActive.length > 0) {
+      const y = JSON.parse(this.isActive[0]);
+      const x = JSON.parse(this.isActive[2]);
+      this.gridToComplete[y][x] = n;
+
+    }
   }
 }

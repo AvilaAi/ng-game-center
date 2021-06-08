@@ -30,33 +30,39 @@ export class HomeComponent implements OnInit {
       photo: '../../assets/images/snake.png',
       isNew: false,
 
-      url: '../snake-component',
+      url: '../snake',
     },
     {
       name: 'tic-tac-toe',
       photo: '../../assets/images/tic-tac-toe.png',
       isNew: false,
 
-      url: '../tictac-component',
+      url: '../tictac',
     },
     {
       name: 'poké memory',
       photo: '../../assets/images/memory.png',
       isNew: false,
 
-      url: '../card-component',
+      url: '../card',
     },
     {
       name: 'real piano',
       photo: '../../assets/images/piano.png',
       isNew: true,
-      url: '../piano-component',
+      url: '../piano',
     },
     {
       name: 'fake bird',
       photo: '../../assets/images/bird.png',
       isNew: true,
-      url: '../bird-component',
+      url: '../bird',
+    },
+    {
+      name: 'Sudoku ',
+      photo: '../../assets/images/sudoku.png',
+      isNew: false,
+      url: '../sudoku',
     },
   ];
 }

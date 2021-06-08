@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if (sessionStorage.getItem('user')) {
-      this.router.navigate(['./home-component']);
+      this.router.navigate(['./home']);
     }
   }
 
@@ -30,15 +30,17 @@ export class LoginComponent implements OnInit {
       if (typeof response == 'number' && response > 0) {
         alert('user existe');
       } else {
+        const avatar = this.avatars.find((e) => e.name === payload.avatar);
+
         sessionStorage.setItem(
           'user',
           JSON.stringify({
             name: payload.name,
-            avatar: payload.avatar,
+            avatar: avatar ? avatar.value : '',
             id: payload.id,
           })
         );
-        this.router.navigate(['./home-component']);
+        this.router.navigate(['./home']);
       }
     });
   }
@@ -49,15 +51,17 @@ export class LoginComponent implements OnInit {
       if (!response) {
         alert('wrong user name or password');
       } else if (response.name && response.avatar) {
+        const avatar = this.avatars.find((e) => e.name === response.avatar);
+
         sessionStorage.setItem(
           'user',
           JSON.stringify({
             name: response.name,
-            avatar: response.avatar,
+            avatar: avatar ? avatar.value : '',
             id: response.id,
           })
         );
-        this.router.navigate(['./home-component']);
+        this.router.navigate(['./home']);
       }
     });
   }
@@ -70,5 +74,10 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  avatars = ['👧', '👦', '👽', '👻'];
+  avatars = [
+    { name: 'girl', value: '👧' },
+    { name: 'boy', value: '👦' },
+    { name: 'alien', value: '👽' },
+    { name: 'ghost', value: '👻' },
+  ];
 }
