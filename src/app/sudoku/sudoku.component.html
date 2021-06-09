@@ -1,8 +1,13 @@
 <app-navigation></app-navigation>
 
 <br />
+<h2 class='text-center text-light'>Sudoku</h2>
 <br />
 <div class="container">
+  <button class="btn btn-warning" *ngFor='let l of levels' (click)='changeLevel(l)'>
+    {{l.name}}
+  </button>
+ 
   <div class="gird-container">
     <div class="gird-case" *ngFor="let n of numbers; let y = index">
       <div class="grid-item" *ngFor="let n of numbers; let x = index">

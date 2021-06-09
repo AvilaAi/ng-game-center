@@ -1,6 +1,4 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { Router } from '@angular/router';
-import { WebRequestService } from '../web-request.service';
 
 @Component({
   selector: 'app-snake',
@@ -8,12 +6,8 @@ import { WebRequestService } from '../web-request.service';
   styleUrls: ['./snake.component.scss'],
 })
 export class SnakeComponent implements OnInit {
-  constructor(
-    private router: Router,
-    private webReqService: WebRequestService
-  ) {}
+  constructor() {}
   title = 'Snake Snack';
-  dbGameName = this.router.url;
   numbers = Array(30);
   middle = this.numbers.length / 2;
   snake = [
@@ -26,18 +20,10 @@ export class SnakeComponent implements OnInit {
   score = 0;
   firstStart = true;
   toggleCard = true;
+  gameOver = false;
   isBusy = false;
-  scores: any;
 
-  ngOnInit() {
-    this.getScores();
-  }
-  getScores() {
-    this.webReqService.get('/scores' + this.dbGameName).subscribe((data) => {
-      this.scores = data;
-      console.log('data', this.scores);
-    });
-  }
+  ngOnInit() {}
 
   randomFruit(max: number) {
     const x = Math.floor(Math.random() * max);
@@ -106,7 +92,7 @@ export class SnakeComponent implements OnInit {
     if (this.autoMove) {
       clearInterval(this.autoMove);
       this.toggleCard = true;
-      console.log(this.score);
+      this.gameOver = true;
     }
   }
 
@@ -121,6 +107,8 @@ export class SnakeComponent implements OnInit {
     this.score = 0;
     this.firstStart = false;
     this.toggleCard = false;
+    this.gameOver = false;
+
     this.autoMove = setInterval(async () => {
       await this.snakeGo(this.direction);
     }, 100);

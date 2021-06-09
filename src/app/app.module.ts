@@ -13,6 +13,7 @@ import { CardComponent } from './card/card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PianoComponent } from './piano/piano.component';
 import { SudokuComponent } from './sudoku/sudoku.component';
+import { RankingComponent } from './ranking/ranking.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { SudokuComponent } from './sudoku/sudoku.component';
     CardComponent,
     PianoComponent,
     SudokuComponent,
+    RankingComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],

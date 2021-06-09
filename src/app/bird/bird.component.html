@@ -1,53 +1,61 @@
 <app-navigation></app-navigation>
+<div class="global container d-flex justify-content-center m-auto">
+  <main
+    class="d-flex flex-column align-items-center justify-content-center p-3"
+  >
+    <h3 class="text-center text-light">
+      Press <span class="badge bg-secondary"> Space</span> to jump, collect
+      Stars ⭐️ : {{ counter }}
+    </h3>
+    <div class="container-fluid mb-3" id="playground">
+      <span
+        #star
+        id="star"
+        [ngStyle]="{
+          'animation-play-state': gameIsOver ? 'paused' : 'initial',
+          animation:
+            gameIsOver || isGetStar ? 'none' : 'star 2s infinite linear',
+          'animation-delay': gameIsOver || isGetStar ? 'none' : '1s'
+        }"
+      >
+        ⭐️
+      </span>
+      <div
+        #wall
+        id="wall"
+        [ngStyle]="{
+          'animation-play-state': gameIsOver ? 'paused' : 'initial',
+          animation: gameIsOver ? 'none' : 'block 2s infinite linear',
+          left: gameIsOver ? '30px' : 'initial'
+        }"
+      ></div>
+      <div
+        #wallTop
+        id="wall-top"
+        [ngStyle]="{
+          'animation-play-state': gameIsOver ? 'paused' : 'initial',
+          animation: gameIsOver ? 'none' : 'block 2s infinite linear',
+          left: gameIsOver ? '30px' : 'initial'
+        }"
+      ></div>
 
-<h3 class="text-center text-light mt-5">
-  Press <span class="badge bg-secondary"> Space</span> to jump, collect Stars
-  ⭐️ : {{ counter }}
-</h3>
-<div class="container-fluid mt-5 d-flex flex-column">
-  <div class="container mb-3" id="playground">
-    <span
-      #star
-      id="star"
-      [ngStyle]="{
-        'animation-play-state': gameIsOver ? 'paused' : 'initial',
-        animation: gameIsOver || isGetStar ? 'none' : 'star 2s infinite linear',
-        'animation-delay': gameIsOver || isGetStar ? 'none' : '1s'
-      }"
-    >
-      ⭐️
-    </span>
-    <div
-      #wall
-      id="wall"
-      [ngStyle]="{
-        'animation-play-state': gameIsOver ? 'paused' : 'initial',
-        animation: gameIsOver ? 'none' : 'block 2s infinite linear',
-        left: gameIsOver ? '30px' : 'initial'
-      }"
-    ></div>
-    <div
-      #wallTop
-      id="wall-top"
-      [ngStyle]="{
-        'animation-play-state': gameIsOver ? 'paused' : 'initial',
-        animation: gameIsOver ? 'none' : 'block 2s infinite linear',
-        left: gameIsOver ? '30px' : 'initial'
-      }"
-    ></div>
+      <div
+        #character
+        id="character"
+        class="text-center"
+        [ngClass]="{ 'get-star': isGetStar }"
+      >
+        {{ !gameIsOver || gameInitial ? user.avatar : "☠️" }}
+      </div>
+      <div class="card dialog d-flex" *ngIf="gameIsOver">
+        <button class="btn btn-warning start-button" (click)="onClickStart()">
+          {{ gameInitial ? "Start" : "Restart" }}
+        </button>
+      </div>
+    </div>
+  </main>
 
-    <div
-      #character
-      id="character"
-      class="text-center"
-      [ngClass]="{ 'get-star': isGetStar }"
-    >
-      {{ !gameIsOver || gameInitial ? user.avatar : "☠️" }}
-    </div>
-    <div class="card dialog d-flex" *ngIf="gameIsOver">
-      <button class="btn btn-warning start-button" (click)="onClickStart()">
-        {{ gameInitial ? "Start" : "Restart" }}
-      </button>
-    </div>
+  <div class="conainer d-flex justify-content-center ps-5">
+    <app-ranking [newScore]="gameIsOver ? counter : 0"></app-ranking>
   </div>
 </div>

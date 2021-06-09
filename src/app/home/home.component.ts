@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { WebRequestService } from '../web-request.service';
 
 @Component({
   selector: 'app-home',
@@ -7,18 +6,9 @@ import { WebRequestService } from '../web-request.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  scores: any;
-  constructor(private webReqService: WebRequestService) {}
+  constructor() {}
 
-  getScores() {
-    this.webReqService.get('/game-scores').subscribe((data) => {
-      this.scores = data;
-    });
-  }
-
-  ngOnInit(): void {
-    this.getScores();
-  }
+  ngOnInit(): void {}
 
   ifGameNew(type: boolean) {
     return this.games.filter((x) => x.isNew === type);

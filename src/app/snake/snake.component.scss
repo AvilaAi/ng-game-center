@@ -1,11 +1,13 @@
-* {
-  box-sizing: border-box;
-  overflow: hidden;
-}
 h1,
 h2,
 h3 {
   color: #fbc531;
+}
+
+.global.container {
+  @media (max-width: 991px) {
+    flex-direction: column;
+  }
 }
 .map {
   display: flex;
@@ -13,7 +15,7 @@ h3 {
   justify-content: center;
   align-items: center;
   width: 76vmin;
-  border: 2px solid rgb(233, 218, 14);
+  border: 2px solid darkgray;
   background-color: transparent;
   position: relative;
 }

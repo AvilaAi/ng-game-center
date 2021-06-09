@@ -13,7 +13,6 @@ export class WebRequestService {
 
   get(uri: string) {
     let url = this.ROOT_URL + uri;
-    console.log('url', url);
     return this.http.get(url);
   }
 
