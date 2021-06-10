@@ -1,3 +1,16 @@
+.dialog {
+  background-color: #00000052;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .grid-container {
   display: flex;
   width: 63vmin;
@@ -11,7 +24,7 @@
   flex: 1 0 auto;
   text-align: center;
   position: relative;
-  font-size: 4vmin;
+  font-size: 3.4vmin;
 
   &:nth-child(3n + 3) {
     border-right: 1px solid teal;
@@ -67,14 +80,13 @@
   text-align: center;
   width: 6.5vmin !important;
   cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'> ✏️</text></svg>")
-      16 0,
+      16 16,
     auto;
 }
 
 .button-group {
   display: flex;
   width: 63vmin;
-  height: 63vmin;
   margin-top: 4vmin;
   & .button-item {
     height: fit-content;

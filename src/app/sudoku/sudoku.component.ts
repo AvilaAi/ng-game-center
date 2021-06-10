@@ -13,16 +13,51 @@ export class SudokuComponent implements OnInit {
   gridToComplete: number[][] = [[]];
   hiddenCase: string[] = [];
   levels = [
-    { name: 'easy', value: 30 },
-    { name: 'medium', value: 45 },
-    { name: 'hard', value: 60 },
+    { name: 'easy', time: 60, value: 10, life: 1 },
+    { name: 'medium', time: 120, value: 45, life: 2 },
+    { name: 'hard', time: 240, value: 65, life: 3 },
   ];
-  holes = 30;
+  level = this.levels[0];
+  holes = 10;
+  life = 1;
+  time = 60;
+  score = 0;
   isActive = '';
-
+  gameOver = true;
+  isFirstStart = true;
+  message = 'Click on the empty case, than choose the correct number';
   constructor() {}
 
   ngOnInit(): void {
+    this.createGrid();
+  }
+  countDown = setTimeout(() => {}, 1000);
+  ngOnDestroy() {
+    this.gameOver = true;
+    if (this.countDown) {
+      clearInterval(this.countDown);
+    }
+  }
+  reStart() {
+    this.ngOnDestroy();
+    this.createGrid();
+  }
+  clickStart() {
+    this.isFirstStart = false;
+    this.gameOver = false;
+    this.time = this.level.time;
+    this.life = this.level.life;
+    this.cleanHoles();
+    this.countDown = setInterval(() => {
+      if (this.time > 0) {
+        this.time--;
+      } else {
+        this.message = "Time's out! Restart a new game!";
+        this.ngOnDestroy();
+      }
+    }, 1000);
+  }
+  createGrid() {
     this.solution = 0;
     this.grid = [[]];
     this.gridToComplete = [[]];
@@ -31,49 +66,56 @@ export class SudokuComponent implements OnInit {
       a[i] = i + 1;
       this.grid[i] = new Array(9).fill(0);
     }
-    this.initThreeCase(0, 0);
-    this.initThreeCase(3, 3);
-    this.initThreeCase(6, 6);
+    this.initThreeCase();
     this.solve(this.grid);
-    this.randomEspace(this.holes);
+    this.randomHoles(this.level.value);
   }
 
   changeLevel(level: any) {
-    // if (level.value !== this.holes) {
-    //   this.holes = level.value;
-    //   this.ngOnInit()
-    //   this.randomEspace(this.holes);
-    // }
+    this.level = level;
+    this.life = level.life;
+    this.time = level.time;
+    this.createGrid();
   }
 
-  randomEspace(level: number) {
-    console.log(
-      JSON.stringify(this.gridToComplete) === JSON.stringify(this.grid)
-    );
-    for (let index = 0; index < level; index++) {
+  randomHoles(holes: number) {
+    var randomY = 0;
+    var randomX = 0;
+    var i = 0;
+    do {
       var randomY = Math.floor(Math.random() * 9);
       var randomX = Math.floor(Math.random() * 9);
       var toHidden = randomY + '-' + randomX;
       if (this.hiddenCase.indexOf(toHidden) < 0) {
         this.hiddenCase.push(toHidden);
         this.gridToComplete[randomY][randomX] = 0;
+        i += 1;
       }
-    }
+    } while (i < holes);
   }
-
-  initThreeCase(x: number, y: number) {
-    for (var a = [], i = 0; i < this.numbers.length; ++i) {
-      a[i] = i + 1;
-    }
-    var random = this.shuffle(a);
-    var r = 0;
-
-    for (let i = 0; i < 3; i++) {
-      for (let j = 0; j < 3; j++) {
-        this.grid[y + i][x + j] = random[r];
-        r += 1;
+  cleanHoles() {
+    this.hiddenCase.forEach((h) => {
+      const y = parseInt(h.slice(0, 1));
+      const x = parseInt(h.slice(-1));
+      this.gridToComplete[y][x] = 0;
+    });
+  }
+  initThreeCase() {
+    var startPoint = [0, 3, 6];
+    startPoint.forEach((p) => {
+      for (var a = [], i = 0; i < this.numbers.length; ++i) {
+        a[i] = i + 1;
       }
-    }
+      var random = this.shuffle(a);
+      var r = 0;
+
+      for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+          this.grid[p + i][p + j] = random[r];
+          r += 1;
+        }
+      }
+    });
   }
 
   shuffle(array: any) {
@@ -148,6 +190,20 @@ export class SudokuComponent implements OnInit {
       const y = JSON.parse(this.isActive[0]);
       const x = JSON.parse(this.isActive[2]);
       this.gridToComplete[y][x] = n;
+
+      if (this.grid[y][x] !== n) {
+        this.life -= 1;
+      }
+    }
+    if (JSON.stringify(this.grid) === JSON.stringify(this.gridToComplete)) {
+      this.ngOnDestroy();
+      this.score = this.time - 1;
+      this.message = 'Bravo! 🏆' + this.score;
+    }
+    if (this.life < 0) {
+      this.ngOnDestroy();
+      this.message = "Life's out! Restart a new game!";
+      this.life = 0;
     }
   }
 }

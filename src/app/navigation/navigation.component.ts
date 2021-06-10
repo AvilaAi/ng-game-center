@@ -33,9 +33,9 @@ export class NavigationComponent implements OnInit {
     { name: 'snake', emoji: '🐍', link: '/snake' },
     { name: 'tic-tac-toe', emoji: '⭕', link: '/tictac' },
     { name: 'cards', emoji: '🃏', link: '/card' },
+    { name: 'sudoku', emoji: '✏️', link: '/sudoku' },
     { name: 'bird', emoji: '🐤', link: '/bird' },
     { name: 'piano', emoji: '🎹', link: '/piano' },
-    { name: 'sudoku', emoji: '✏️', link: '/sudoku' },
   ];
 
   isCollapsed = true;
