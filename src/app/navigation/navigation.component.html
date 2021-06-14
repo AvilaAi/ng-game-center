@@ -4,13 +4,20 @@
     <div class="ms-auto"></div>
 
     <span
-      class="text-light btn fw-bolder"
+      class="text-light btn fw-bolder text-capitalize"
       style="padding-bottom: 0; cursor: default"
-      >{{ "Hello " + nameCapitalize + " !" }}</span
+      >{{ user ? "Hello " + user.name + " !" : "Hello !" }}</span
     >
 
-    <button class="btn btn-outline-light mx-3" (click)="isPopup = true">
-      {{ user.avatar + " Log out" }} 
+    <button
+      *ngIf="user"
+      class="btn btn-outline-light mx-3"
+      (click)="isPopup = true"
+    >
+      {{ user.avatar + " Log out" }}
+    </button>
+    <button *ngIf="!user" class="btn btn-outline-light mx-3" routerLink="/">
+      {{ "Log in" }}
     </button>
     <button
       class="navbar-toggler position-relative"
@@ -40,7 +47,7 @@
           *ngFor="let c of components"
           type="button"
           class="btn btn-outline-warning my-3"
-          routerLink="{{ c.link }}"
+          routerLink="{{ '/' + c.dbName }}"
           routerLinkActive="active"
           >{{ c.emoji }}</a
         >
@@ -70,8 +77,8 @@
   <a
     *ngFor="let c of components"
     type="button"
-    class="btn btn-outline-warning my-3"
-    routerLink="{{ c.link }}"
+    class="btn btn-outline-warning my-3 p-2"
+    routerLink="{{ '/' + c.dbName }}"
     routerLinkActive="active"
     >{{ c.emoji }}</a
   >
@@ -97,7 +104,9 @@
 >
   <div class="card text-center bg-dark p-5 border border-light">
     <div class="card-body">
-      <h5 class="card-title text-light">{{ user.avatar + nameCapitalize }}</h5>
+      <h5 class="card-title text-light text-capitalize">
+        {{ user.avatar + user.name }}
+      </h5>
       <p class="card-text text-light mb-5">Do you really want to log out ?</p>
       <button (click)="isPopup = false" class="btn btn-outline-light mx-3">
         Not Really

@@ -11,7 +11,7 @@
       <div
         class="card shadow-lg p-1 mb-1"
         type="button"
-        routerLink="{{ game.url }}"
+        routerLink="{{  '/'+game.dbName }}"
       >
         <img
           src="{{ game.photo }}"
@@ -35,7 +35,7 @@
       </h4>
     </div>
     <div class="col col-6 col-md-3" *ngFor="let game of ifGameNew(true)">
-      <div class="card shadow-lg p-1" type="button" routerLink="{{ game.url }}">
+      <div class="card shadow-lg p-1" type="button" routerLink="{{ '/'+game.dbName }}">
         <img
           src="{{ game.photo }}"
           width="220"
@@ -52,7 +52,7 @@
     </div>
 
     <div class="col col-12 my-5">
-   <app-ranking></app-ranking>
+   <app-ranking ></app-ranking>
     </div>
   </div>
 </div>

@@ -1,10 +1,14 @@
 <div class="card bg-dark text-light mt-5">
   <div class="card-body border-bottom" *ngIf="dbGameName !== 'home'">
-    <h5 class="card-title text-center">My record</h5>
-    <h5 class="card-title text-center">🏆 {{ myScore ? myScore : 0 }}</h5>
+    <div>
+
+      <h5 class="card-title text-center text-capitalize">{{user?'my record':'try login'}}</h5>
+      <p *ngIf='!user' class='text-center'>to record your score</p>
+      <h5 class="card-title text-center">🏆 {{ myScore ? myScore : "" }}</h5>
+    </div>
   </div>
   <div class="card-body">
-    <h5 class="card-title text-center">High scores</h5>
+    <h5 class="card-title text-center text-capitalize">High scores</h5>
   </div>
   <ul class="list-group list-group-flush" *ngIf="dbGameName !== 'home'">
     <li
@@ -18,20 +22,24 @@
       "
       *ngFor="let s of scores"
     >
-      <span>
-        {{ s.name }}
+      <span class="badge bg-light text-dark">
+        {{ s.avatar + " " + s.name }}
       </span>
       <span> 🏆{{ s.score }} </span>
     </li>
   </ul>
-  <div class="row px-4 mb-5" *ngIf="dbGameName == 'home'">
+  <div class="row px-4 mb-4" *ngIf="dbGameName == 'home'">
     <div class="col" *ngFor="let s of scores">
-      <div class="card bg-dark text-light text-center">
+      <div class="card border bg-dark text-light text-center">
         <div class="card-body">
           <h5 class="card-title">{{ s.gameName }}</h5>
-          <h5 class="card-title">🏆 {{ s.topScore }}</h5>
+          <h5 class="card-title text-warning">🏆 {{ s.topScore }}</h5>
 
-          <li class="list-group-item bg-dark text-light">{{ s.name }}</li>
+          <h5>
+            <span class="badge bg-light text-dark">
+              {{ s.avatar + " " + s.name }}</span
+            >
+          </h5>
         </div>
       </div>
     </div>

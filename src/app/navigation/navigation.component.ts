@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { games } from '../global';
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
@@ -8,34 +8,36 @@ import { Router } from '@angular/router';
 })
 export class NavigationComponent implements OnInit {
   public user: any;
-  nameCapitalize = '';
 
   constructor(private router: Router) {
-    this.user = JSON.parse(
-      sessionStorage.getItem('user') || '{"name": " ", "avatar": " "}'
-    );
-    this.nameCapitalize =
-      this.user.name[0].toUpperCase() + this.user.name.slice(1);
+    const sessionUser = sessionStorage.getItem('user');
+    if (sessionUser) {
+      this.user = JSON.parse(sessionUser);
+    }
   }
 
   ngOnInit(): void {
-    this.user = JSON.parse(
-      sessionStorage.getItem('user') || '{"name": "", "avatar": ""}'
-    );
+    const sessionUser = sessionStorage.getItem('user');
+    if (sessionUser) {
+      this.user = JSON.parse(sessionUser);
+    }
   }
   // ngDoCheck() {
   //   this.user = JSON.parse(
   //     sessionStorage.getItem('user') || '{"name": "", "avatar": ""}'
   //   );
   // }
+
   components = [
-    { name: 'home', emoji: '🏠', link: '/home' },
-    { name: 'snake', emoji: '🐍', link: '/snake' },
-    { name: 'tic-tac-toe', emoji: '⭕', link: '/tictac' },
-    { name: 'cards', emoji: '🃏', link: '/card' },
-    { name: 'sudoku', emoji: '✏️', link: '/sudoku' },
-    { name: 'bird', emoji: '🐤', link: '/bird' },
-    { name: 'piano', emoji: '🎹', link: '/piano' },
+    {
+      name: 'home',
+      emoji: '🏠',
+
+      photo: '',
+      isNew: false,
+      dbName: 'home',
+    },
+    ...games,
   ];
 
   isCollapsed = true;

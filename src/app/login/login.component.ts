@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { WebRequestService } from '../web-request.service';
-
+import {avatars} from '../global'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   isNew = true;
+  avatars = avatars
 
   ngOnInit(): void {
     if (sessionStorage.getItem('user')) {
@@ -74,10 +75,4 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  avatars = [
-    { name: 'girl', value: '👧' },
-    { name: 'boy', value: '👦' },
-    { name: 'alien', value: '👽' },
-    { name: 'ghost', value: '👻' },
-  ];
 }
