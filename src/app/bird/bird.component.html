@@ -12,6 +12,7 @@
         #star
         id="star"
         [ngStyle]="{
+          background: 'none',
           'animation-play-state': gameIsOver ? 'paused' : 'initial',
           animation:
             gameIsOver || isGetStar ? 'none' : 'star 2s infinite linear',

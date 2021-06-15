@@ -16,7 +16,7 @@ export class BirdComponent implements OnInit {
 
   constructor() {
     this.user = JSON.parse(
-      sessionStorage.getItem('user') || '{"name": "", "avatar": ""}'
+      sessionStorage.getItem('user') || '{"name": "", "avatar": "🐥"}'
     );
   }
 
@@ -33,10 +33,9 @@ export class BirdComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = JSON.parse(
-      sessionStorage.getItem('user') || '{"name": "", "avatar": ""}'
+      sessionStorage.getItem('user') || '{"name": "", "avatar": "🐥"}'
     );
   }
-
 
   ngAfterViewInit() {
     const bird = this.character.nativeElement;

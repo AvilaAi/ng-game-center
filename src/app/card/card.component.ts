@@ -14,7 +14,7 @@ export class CardComponent implements OnInit {
   random = 100;
   isGameStart = false;
   message = ' Turn over pairs of matching cards ';
-  imgUrl = '';
+  imgUrl = 'https://pokeres.bastionbot.org/images/pokemon/';
 
   ngOnInit(): void {
     var a = [];
@@ -32,10 +32,6 @@ export class CardComponent implements OnInit {
     this.matchedCard = [];
   }
 
-  ngAfterContentInit() {
-    this.imgUrl = 'https://pokeres.bastionbot.org/images/pokemon/';
-  }
-
   countDown = setTimeout(() => {}, 1000);
   ngOnDestroy() {
     if (this.countDown) {
@@ -44,7 +40,9 @@ export class CardComponent implements OnInit {
   }
 
   toStartGame() {
-    this.ngOnInit();
+    if (this.timer <60) {
+      this.ngOnInit();
+    }
     this.timer = 60;
     this.isGameStart = true;
     this.countDown = setInterval(() => {

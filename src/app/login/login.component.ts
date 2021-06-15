@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { WebRequestService } from '../web-request.service';
-import {avatars} from '../global'
+import { avatars } from '../global';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,8 +16,10 @@ export class LoginComponent implements OnInit {
   ) {}
 
   isNew = true;
-  avatars = avatars
-
+  avatars = avatars;
+  showPassword = false;
+  existeAlert = '';
+  errorAlert = '';
   ngOnInit(): void {
     if (sessionStorage.getItem('user')) {
       this.router.navigate(['./home']);
@@ -29,7 +31,7 @@ export class LoginComponent implements OnInit {
       console.log('in sign up ', typeof response, response);
 
       if (typeof response == 'number' && response > 0) {
-        alert('user existe');
+        this.existeAlert = '*username existe';
       } else {
         const avatar = this.avatars.find((e) => e.name === payload.avatar);
 
@@ -50,7 +52,7 @@ export class LoginComponent implements OnInit {
     this.webReqService.post('/users', payload).subscribe((response: any) => {
       console.log('in sign  in', typeof response, response);
       if (!response) {
-        alert('wrong user name or password');
+        this.errorAlert = '*wrong user name or password';
       } else if (response.name && response.avatar) {
         const avatar = this.avatars.find((e) => e.name === response.avatar);
 
@@ -74,5 +76,4 @@ export class LoginComponent implements OnInit {
       this.signIn(f.value);
     }
   }
-
 }

@@ -9,10 +9,11 @@
         login-card
         card
         text-center
-        border border-dark border-5
+        border-0
         bg-dark
         text-light
         shadow-lg
+        border-5 border-dark
       "
     >
       <div
@@ -26,7 +27,7 @@
       >
         <h1 class="card-title fw-bold pe-2">🕹️ Game center</h1>
 
-        <p class="mt-2 mb-5">back to the simple pure fun</p>
+        <p class="mt-2 mb-5">back to the simplest fun</p>
         <button type="button" class="btn btn-warning" routerLink="/home">
           👀 Play without login
         </button>
@@ -38,32 +39,81 @@
         login-card
         card
         text-center
-        px-5
-        py-3
-        border border-dark border-5
+        p-0
+        border-5 border-dark
         shadow-lg
       "
     >
-      <div class="card-body">
-        <div class="d-flex justify-content-evenly mt-5">
-          <button
-            class="btn btn-outline-dark"
-            (click)="isNew = true"
-            [class.active]="isNew"
-          >
-            <span *ngIf="isNew">👌</span>
-            New player
-          </button>
-          <button
-            class="btn btn-outline-dark"
-            (click)="isNew = false"
-            [class.active]="!isNew"
-          >
-            <span *ngIf="!isNew">👌</span> Sign in
-          </button>
+      <div class="bg-dark d-flex py-0">
+        <div
+          type="button"
+          [ngStyle]="{
+            background: isNew ? 'white' : 'transparent',
+            color: isNew ? 'black' : 'white'
+          }"
+          class="
+            d-flex
+            justify-content-center
+            align-items-center
+            flex-fill
+            border-0
+            rounded-0
+            py-3
+          "
+          (click)="isNew = true"
+        >
+          <span class="mx-1"> {{ isNew ? " 🟡 " : " ⚪ " }}</span>
+          New player
         </div>
+        <div
+          type="button"
+          [ngStyle]="{
+            background: !isNew ? 'white' : 'transparent',
+            color: !isNew ? 'black' : 'white'
+          }"
+          (click)="isNew = false"
+          class="
+            d-flex
+            justify-content-center
+            align-items-center
+            flex-fill
+            border-0
+            rounded-0
+          "
+        >
+          <span class="mx-1"> {{ !isNew ? " 🟡  " : " ⚪  " }}</span>
 
+          Sign in
+        </div>
+      </div>
+      <div
+        class="
+          card-body
+          px-3
+          border-0
+          d-flex
+          flex-column
+          justify-content-center
+          align-items-center
+        "
+        style="height: 400px"
+      >
         <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+          <div
+            *ngIf="
+              (name.invalid || password.invalid) &&
+              (name.dirty || name.touched || password.touched || password.dirty)
+            "
+            class="text-danger"
+          >
+            <div *ngIf="name.errors?.pattern">Name cannot contain spaces.</div>
+            <div *ngIf="password.errors?.pattern">
+              Password cannot contain spaces.
+            </div>
+          </div>
+          <div class="text-danger">
+            {{ isNew ? existeAlert : errorAlert }}
+          </div>
           <div class="mt-2">
             <label class="h5" for="name">Your name :</label>
 
@@ -75,59 +125,69 @@
               required
               maxlength="10"
               #name="ngModel"
-              autocomplete="off"
+              autocomplete
               pattern="[^\s]{1,10}"
               autofocus
               id="name"
             />
           </div>
-          <div class="mt-2">
-            <label class="h5" for="name">Password :</label>
+          <div class="mt-2 position-relative">
+            <label class="h5" for="password">Password :</label>
 
             <input
-              type="password"
+              type="{{ showPassword ? 'password' : 'text' }}"
               class="form-control text-center border border-dark fw-bold"
               ngModel
               name="password"
               required
               maxlength="20"
-              #name="ngModel"
-              autocomplete="off"
+              #password="ngModel"
+              autocomplete
               pattern="[^\s]{1,20}"
               autofocus
               id="password"
             />
+            <span
+              class="position-absolute"
+              style="bottom: 10%; right: 10px"
+              type="button"
+              (click)="showPassword = !showPassword"
+              [ngStyle]="{ opacity: !showPassword ? 1 : 0.5 }"
+            >
+              👁️
+            </span>
           </div>
 
-          <div class="my-4" *ngIf="isNew">
+          <div class="mt-4" *ngIf="isNew">
             <p class="h5">You are :</p>
-            <span *ngFor="let avatar of avatars; let index = index">
-              <input
-                type="radio"
-                class="btn-check"
-                name="avatar"
-                id="{{ 'ava' + index }}"
-                autocomplete="off"
-                ngModel
-                required
-                #avatar="ngModel"
-                value="{{ avatar.name }}"
-              />
-              <label
-                class="btn btn-outline-dark mx-2 fs-4"
-                for="{{ 'ava' + index }}"
-                >{{ avatar.value }}</label
-              >
-            </span>
+            <div class="d-flex justify-content-between">
+              <span *ngFor="let avatar of avatars; let index = index">
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="avatar"
+                  id="{{ 'ava' + index }}"
+                  autocomplete="off"
+                  ngModel
+                  required
+                  #avatar="ngModel"
+                  value="{{ avatar.name }}"
+                />
+                <label
+                  class="btn btn-outline-dark fs-3 p-1"
+                  for="{{ 'ava' + index }}"
+                  >{{ avatar.value }}</label
+                >
+              </span>
+            </div>
           </div>
           <button
             type="button"
             type="submit"
-            class="btn btn-dark my-2 px-5 fw-bold"
+            class="btn btn-dark my-4 px-5 fw-bold"
             [disabled]="!f.valid"
           >
             {{ !f.valid ? "Enter ur infos" : "Go!" }}
-            {{ f.value.avatar }}
           </button>
         </form>
       </div>
