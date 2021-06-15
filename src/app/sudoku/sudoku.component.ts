@@ -13,14 +13,14 @@ export class SudokuComponent implements OnInit {
   gridToComplete: number[][] = [[]];
   hiddenCase: string[] = [];
   levels = [
-    { name: 'easy', time: 60, value: 10, life: 1 },
-    { name: 'medium', time: 120, value: 45, life: 2 },
-    { name: 'hard', time: 240, value: 65, life: 3 },
+    { name: 'easy', time: 90, value: 10, life: 1 },
+    { name: 'medium', time: 240, value: 40, life: 2 },
+    { name: 'hard', time: 480, value: 60, life: 3 },
   ];
   level = this.levels[0];
   holes = 10;
   life = 1;
-  time = 60;
+  time = 90;
   score = 0;
   isActive = '';
   gameOver = true;
