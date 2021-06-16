@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  urlApi: 'http://localhost:8090/api'
+  urlApi: 'http://localhost:9000/.netlify/functions/api/'
 };
 
 /*
