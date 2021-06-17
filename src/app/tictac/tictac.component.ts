@@ -20,7 +20,9 @@ export class TictacComponent implements OnInit {
   occupO: number[] = [];
   spaceO = [...Array(9).keys()];
   endGame = false;
-
+  score = 0;
+  computerScore = 0;
+  userAvatar = '';
   conditionWin = [
     [0, 1, 2],
     [3, 4, 5],
@@ -39,6 +41,10 @@ export class TictacComponent implements OnInit {
 
   ngOnInit(): void {
     this.newGame();
+    const user = JSON.parse(
+      sessionStorage.getItem('user') || '{"name": "", "avatar": "You"}'
+    );
+    this.userAvatar = user.avatar;
   }
 
   newGame() {
@@ -61,6 +67,7 @@ export class TictacComponent implements OnInit {
       for (var i = 0; i < this.conditionWin.length; i++) {
         if (this.ifWin(this.conditionWin[i], this.occupX) === true) {
           this.winner = this.x;
+          this.score += 1;
           this.endGame = true;
 
           this.winLine = this.conditionWin[i];
@@ -117,6 +124,7 @@ export class TictacComponent implements OnInit {
     for (var i = 0; i < this.conditionWin.length; i++) {
       if (this.ifWin(this.conditionWin[i], this.occupO) === true) {
         this.winner = this.o;
+        this.computerScore += 1;
         this.endGame = true;
         this.winLine = this.conditionWin[i];
 

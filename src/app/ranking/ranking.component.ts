@@ -12,6 +12,9 @@ export class RankingComponent implements OnInit {
   avatars = global.avatars;
   games = global.games;
   ngOnChanges(changes: SimpleChanges) {
+    if (this.dbGameName === 'tictac') {
+      this.newScore = parseInt(this.myScore) + 1;
+    }
     if (this.user && this.newScore > 0 && this.newScore > this.myScore) {
       this.updateScore();
       console.log('change value', this.newScore);

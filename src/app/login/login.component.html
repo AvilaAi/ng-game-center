@@ -135,7 +135,7 @@
             <label class="h5" for="password">Password :</label>
 
             <input
-              type="{{ showPassword ? 'password' : 'text' }}"
+              type="{{ !showPassword ? 'password' : 'text' }}"
               class="form-control text-center border border-dark fw-bold"
               ngModel
               name="password"
@@ -152,7 +152,7 @@
               style="bottom: 10%; right: 10px"
               type="button"
               (click)="showPassword = !showPassword"
-              [ngStyle]="{ opacity: !showPassword ? 1 : 0.5 }"
+              [ngStyle]="{ opacity: showPassword ? 1 : 0.5 }"
             >
               👁️
             </span>

@@ -1,54 +1,60 @@
 <app-navigation></app-navigation>
-<div class=" container global d-flex justify-content-evenly">
-
-
-<main class="d-flex flex-column">
-  <h2 class="mb-4 text-center text-warning">{{ title }}</h2>
-
-  <div class="board p-0 mx-auto">
-    <button
-      class="btn btn-outline-secondary"
-      type="button"
-      *ngFor="let n of numbers; let id = index"
-      (click)="drawX(id)"
-      [disabled]="
-        currentPlayer === o || spaceO.indexOf(id) < 0 || winner.length > 0
-      "
-      aria-label="button-clickble"
-    >
-      <p
-        class="my-0"
-        [ngClass]="{
-          winStyle: winLine.indexOf(id) !== -1,
-          oStyle: occupO.indexOf(id) !== -1
-        }"
+<div class="container global d-flex justify-content-evenly">
+  <main class="d-flex flex-column position-relative">
+    <h2 class="mb-1 text-center text-warning">{{ title }}</h2>
+    <p class="ms-auto text-light">
+      {{ userAvatar }}
+      <span class="badge bg-light text-dark">{{ score }} </span>
+      :
+      <span class="badge bg-light text-dark"> {{ computerScore }}</span> 🤖
+    </p>
+    <div class="board p-0 mx-auto">
+      <button
+        class="btn btn-outline-secondary"
+        type="button"
+        *ngFor="let n of numbers; let id = index"
+        (click)="drawX(id)"
+        [disabled]="
+          currentPlayer === o || spaceO.indexOf(id) < 0 || winner.length > 0
+        "
+        aria-label="button-clickble"
       >
-        {{ occupX.indexOf(id) !== -1 ? "x" : "" }}
-        {{ occupO.indexOf(id) !== -1 ? "o" : "" }}
-      </p>
-    </button>
-    <div class="tips">
-      <p class="text-left text-light">
-        You: X <br />
-        Computer: O
-      </p>
+        <p
+          class="my-0"
+          [ngClass]="{
+            winStyle: winLine.indexOf(id) !== -1,
+            oStyle: occupO.indexOf(id) !== -1
+          }"
+        >
+          {{ occupX.indexOf(id) !== -1 ? "x" : "" }}
+          {{ occupO.indexOf(id) !== -1 ? "o" : "" }}
+        </p>
+      </button>
     </div>
-  </div>
 
-  <div *ngIf="winner.length > 0" class="foot mt-5">
-    <h2 class="text-center text-light">
-      {{
-        winner === x
-          ? "You Win!"
-          : winner === o
-          ? "Computer Wins!"
-          : winner === nulGame && "Game Nul"
-      }}
-    </h2>
-    <button class="btn btn-warning fw-bolder" (click)="ngOnInit()">
-      Restart
-    </button>
-  </div>
-</main>
-<app-ranking></app-ranking>
+    <div
+      *ngIf="winner.length > 0"
+      class="
+        shadow-lg
+        bg-dark
+        position-absolute
+        d-flex
+        flex-column
+        align-items-center
+      "
+      style="left: 50%; top: 50%; transform: translate(-50%, -20%)"
+    >
+      <h2 class="text-center text-light m-3">
+        {{
+          winner === x
+            ? "You Win!"
+            : winner === o
+            ? "Computer Wins!"
+            : winner === nulGame && "Game Nul"
+        }}
+      </h2>
+      <button class="btn btn-warning m-3" (click)="ngOnInit()">Restart</button>
+    </div>
+  </main>
+  <app-ranking [newScore]="score"></app-ranking>
 </div>
