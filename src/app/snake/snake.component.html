@@ -30,7 +30,7 @@
                 snakeBody.indexOf(row + '-' + col) !== -1
                   ? '#73c7af'
                   : 'transparent',
-              opacity: 1 - snakeBody.indexOf(row + '-' + col) / 50,
+              opacity: 1 - snakeBody.indexOf(row + '-' + col) / 100,
               'border-radius': snakeBody.indexOf(row + '-' + col) / 10 + 'px',
               filter:
                 snakeBody.indexOf(row + '-' + col) === 0
@@ -53,7 +53,7 @@
         >
           <div class="card-body">
             <h3 class="card-title mt-5">
-              {{ firstStart ? "Use your keyboard :  ⬅️ ➡️ ⬆️" : "Game Over" }}
+              {{ firstStart ? "Use your keyboard :  ⬅️ ➡️ ⬆️" : "Oops!" }}
             </h3>
 
             <button class="btn btn-warning my-5" (click)="gameStart()">
