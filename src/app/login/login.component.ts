@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
 
   signUp(payload: any) {
     this.webReqService.post('/users', payload).subscribe((response: any) => {
-      console.log('in sign up ', typeof response, response[0][0]);
 
       if (typeof response == 'number' && response > 0) {
         this.existeAlert = '*username existe';
