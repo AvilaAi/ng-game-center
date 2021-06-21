@@ -34,13 +34,13 @@ export class LoginComponent implements OnInit {
         this.existeAlert = '*username existe';
       } else {
         const avatar = this.avatars.find((e) => e.name === payload.avatar);
-
+        const userId = response[0].id;
         sessionStorage.setItem(
           'user',
           JSON.stringify({
             name: payload.name,
             avatar: avatar ? avatar.value : '',
-            id: payload.id,
+            id: userId,
           })
         );
         this.router.navigate(['./home']);
