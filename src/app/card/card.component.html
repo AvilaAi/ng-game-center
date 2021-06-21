@@ -1,94 +1,108 @@
 <app-navigation></app-navigation>
 <div class="container d-flex justify-content-evenly">
-  <div class="px-2 mb-2">
-    <p class="h4 mb-4 text-center text-warning">{{ title }}</p>
-    <div
-      *ngIf="!isGameStart"
-      class="modal-dialog m-auto shadow-lg rounded border border-warning"
+  <div class="row d-flex justify-content-center" style="width: 100%">
+    <main
+      class="
+        d-flex
+        flex-column
+        position-relative
+        align-items-center
+        justify-content-center
+        col col-12 col-lg-10
+      "
     >
-      <div class="modal-content d-block p-4 bg-dark text-light">
-        <h4 class="mb-5">{{ message }}</h4>
-        <button class="btn btn-warning" (click)="toStartGame()">
-          {{ timer === 0 || timer < 60 ? "Restart" : "Start" }}
-        </button>
-      </div>
-    </div>
-    <div class="row row-col-12 g-5 card-container m-auto">
-      <h5 class="col col-12 mt-0">
-        <span class="badge bg-light text-dark"> Time: {{ timer }} </span>
-      </h5>
+      <p class="h4 mb-4 text-center text-warning">{{ title }}</p>
       <div
-        class="col col-4 col-md-3 my-2"
-        *ngFor="let num of numbers; let i = index"
-        style="flex: auto"
+        *ngIf="!isGameStart"
+        class="modal-dialog m-auto shadow-lg rounded border border-warning"
       >
+        <div class="modal-content d-block p-4 bg-dark text-light">
+          <h4 class="mb-5">{{ message }}</h4>
+          <button class="btn btn-warning" (click)="toStartGame()">
+            {{ timer === 0 || timer < 60 ? "Restart" : "Start" }}
+          </button>
+        </div>
+      </div>
+      <div class="row row-col-12 g-5 card-container m-auto">
+        <h5 class="col col-12 mt-0">
+          <span class="badge bg-light text-dark"> Time: {{ timer }} </span>
+        </h5>
         <div
-          class="
-            card-item
-            container-fluid
-            border-0
-            d-flex
-            justify-content-center
-            align-items-center
-          "
-          (click)="flipCard(i)"
-          [ngClass]="
-            checkedCard.indexOf(i) > -1 || matchedCard.indexOf(i) > -1
-              ? 'visible'
-              : ''
-          "
-          [ngStyle]="{
-            'pointer-events':
-              checkedCard.indexOf(i) > -1 ||
-              matchedCard.indexOf(i) > -1 ||
-              !isGameStart ||
-              checkedCard.length >= 2
-                ? 'none'
-                : 'auto'
-          }"
+          class="col col-4 col-md-3 my-2"
+          *ngFor="let num of numbers; let i = index"
+          style="flex: auto"
         >
-          <div *ngIf="imgUrl.length > 0" class="card card-front border-0">
-            <picture>
-              <source
-                srcset="{{ imgUrl + (randomArray[i] + random) }}.png"
-                type="image/png"
-              />
-              <img
-                src="{{ imgUrl + (randomArray[i] + random) }}.png"
-                alt="pokemon"
-                class="img-fluid img-thumbnail bg-transparent border-0"
-                width="120px"
-              />
-            </picture>
-          </div>
           <div
             class="
-              card card-back
+              card-item
+              container-fluid
+              border-0
               d-flex
               justify-content-center
-              border border-secondary
-              rounded-2
-              overflow-hidden
+              align-items-center
             "
+            (click)="flipCard(i)"
+            [ngClass]="
+              checkedCard.indexOf(i) > -1 || matchedCard.indexOf(i) > -1
+                ? 'visible'
+                : ''
+            "
+            [ngStyle]="{
+              'pointer-events':
+                checkedCard.indexOf(i) > -1 ||
+                matchedCard.indexOf(i) > -1 ||
+                !isGameStart ||
+                checkedCard.length >= 2
+                  ? 'none'
+                  : 'auto'
+            }"
           >
-            <picture>
-              <source
-                srcset="../../assets/images/card.webp"
-                type="image/webp"
-              />
-              <source srcset="../../assets/images/card.png" type="image/png" />
-              <img
-                src="../../assets/images/card.png"
-                alt="pokemon"
-                width="120px"
-              />
-            </picture>
+            <div *ngIf="imgUrl.length > 0" class="card card-front border-0">
+              <picture>
+                <source
+                  srcset="{{ imgUrl + (randomArray[i] + random) }}.png"
+                  type="image/png"
+                />
+                <img
+                  src="{{ imgUrl + (randomArray[i] + random) }}.png"
+                  alt="pokemon"
+                  class="img-fluid img-thumbnail bg-transparent border-0"
+                  width="120px"
+                />
+              </picture>
+            </div>
+            <div
+              class="
+                card card-back
+                d-flex
+                justify-content-center
+                border border-secondary
+                rounded-2
+                overflow-hidden
+              "
+            >
+              <picture>
+                <source
+                  srcset="../../assets/images/card.webp"
+                  type="image/webp"
+                />
+                <source
+                  srcset="../../assets/images/card.png"
+                  type="image/png"
+                />
+                <img
+                  src="../../assets/images/card.png"
+                  alt="pokemon"
+                  width="120px"
+                />
+              </picture>
+            </div>
           </div>
         </div>
       </div>
+    </main>
+    <div class="col col-10 col-lg-2">
+      <app-ranking [newScore]="!isGameStart ? timer : 0"></app-ranking>
     </div>
-  </div>
-  <div class="conainer d-flex justify-content-center ps-5">
-    <app-ranking [newScore]="!isGameStart ? timer : 0"></app-ranking>
   </div>
 </div>

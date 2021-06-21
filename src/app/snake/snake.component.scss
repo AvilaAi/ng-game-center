@@ -4,11 +4,6 @@ h3 {
   color: #fbc531;
 }
 
-.global.container {
-  @media (max-width: 991px) {
-    flex-direction: column;
-  }
-}
 .map {
   display: flex;
   flex-direction: column;

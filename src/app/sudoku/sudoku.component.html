@@ -1,83 +1,96 @@
 <app-navigation></app-navigation>
 <div class="global container d-md-flex justify-content-evenly">
-  <main class="main  position-relative">
-    <div class="dialog" *ngIf="gameOver">
-      <div class="card text-center" style="width: 92%">
-        <div class="card-body bg-dark text-light">
-       
-          <h5 class="card-title m-5 ">
-            {{ message }}
-          </h5>
-          <p class="card-text">Select a level :</p>
-          <div class="d-flex justify-content-evenly">
-            <button
-              class="btn"
-              *ngFor="let l of levels"
-              (click)="changeLevel(l)"
-              [ngClass]="l === level ? 'btn-light' : 'btn-outline-light'"
-            >
-              {{ l === level ? " 🟡 " : " ⚪ " }} {{ l.name.toUpperCase() }}
+  <div class="row d-flex justify-content-center" style="width: 100%">
+    <main
+      class="
+        d-flex
+        flex-column
+        align-items-center
+        justify-content-center
+        col col-12 col-lg-10
+        position-relative
+        m-auto
+      "
+      style='max-width: 70vmin'
+    >
+      <div class="dialog" *ngIf="gameOver">
+        <div class="card text-center" style="width: 92%">
+          <div class="card-body bg-dark text-light">
+            <h5 class="card-title m-5">
+              {{ message }}
+            </h5>
+            <p class="card-text">Select a level :</p>
+            <div class="d-flex justify-content-evenly">
+              <button
+                class="btn"
+                *ngFor="let l of levels"
+                (click)="changeLevel(l)"
+                [ngClass]="l === level ? 'btn-light' : 'btn-outline-light'"
+              >
+                {{ l === level ? " 🟡 " : " ⚪ " }} {{ l.name.toUpperCase() }}
+              </button>
+            </div>
+
+            <button class="btn btn-warning mt-5 px-5" (click)="clickStart()">
+              Start
             </button>
           </div>
-
-          <button class="btn btn-warning mt-5 px-5" (click)="clickStart()">
-            Start
-          </button>
-        </div>
-        <div class="card-footer text-muted">
-          You have: {{ level.time }} seconds and {{ level.life }}
-          {{ life == 1 ? "chance" : "chances" }} to correct !
+          <div class="card-footer text-muted">
+            You have: {{ level.time }} seconds and {{ level.life }}
+            {{ life == 1 ? "chance" : "chances" }} to correct !
+          </div>
         </div>
       </div>
-    </div>
 
-    <h2 class="text-center text-light">Sudoku</h2>
-    <div class="container d-flex justify-content-start my-2">
-      <span class="badge bg-light text-dark">Time : {{ time }}</span>
-      <span class="badge bg-light text-dark ms-2">Life : {{ life }}</span>
-      <span
-        type="button"
-        class="badge bg-light text-dark ms-auto"
-        (click)="reStart() "
-        >Restart a new game</span
-      >
-    </div>
+      <h2 class="text-center text-light">Sudoku</h2>
+      <div class="container d-flex justify-content-start my-2">
+        <span class="badge bg-light text-dark">Time : {{ time }}</span>
+        <span class="badge bg-light text-dark ms-2">Life : {{ life }}</span>
+        <span
+          type="button"
+          class="badge bg-light text-dark ms-auto"
+          (click)="reStart()"
+          >Restart a new game</span
+        >
+      </div>
 
-    <div class="gird-container">
-      <div class="gird-case" *ngFor="let n of numbers; let y = index">
-        <div class="grid-item" *ngFor="let n of numbers; let x = index">
-          <span>
-            {{ hiddenCase.indexOf(y + "-" + x) < 0 ? grid[y][x] : " " }}
-          </span>
+      <div class="gird-container">
+        <div class="gird-case" *ngFor="let n of numbers; let y = index">
+          <div class="grid-item" *ngFor="let n of numbers; let x = index">
+            <span>
+              {{ hiddenCase.indexOf(y + "-" + x) < 0 ? grid[y][x] : " " }}
+            </span>
 
-          <span
-            class="input-case"
-            (click)="clickToInput(y, x)"
-            *ngIf="hiddenCase.indexOf(y + '-' + x) > -1"
-            [ngStyle]="{
-              background: isActive === y + '-' + x ? 'lemonchiffon' : 'inherit',
-              color: gridToComplete[y][x] === grid[y][x] ? 'green' : 'red'
-            }"
-          >
-            {{ gridToComplete[y][x] > 0 ? gridToComplete[y][x] : " " }}
-          </span>
+            <span
+              class="input-case"
+              (click)="clickToInput(y, x)"
+              *ngIf="hiddenCase.indexOf(y + '-' + x) > -1"
+              [ngStyle]="{
+                background:
+                  isActive === y + '-' + x ? 'lemonchiffon' : 'inherit',
+                color: gridToComplete[y][x] === grid[y][x] ? 'green' : 'red'
+              }"
+            >
+              {{ gridToComplete[y][x] > 0 ? gridToComplete[y][x] : " " }}
+            </span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="button-group mx-auto">
-      <button
-        type="button"
-        class="btn btn-outline-light button-item"
-        *ngFor="let n of numbers; let i = index"
-        id="{{ i + 1 }}"
-        (click)="selectNumber(i + 1)"
-      >
-        {{ i + 1 }}
-      </button>
+      <div class="button-group mx-auto">
+        <button
+          type="button"
+          class="btn btn-outline-light button-item"
+          *ngFor="let n of numbers; let i = index"
+          id="{{ i + 1 }}"
+          (click)="selectNumber(i + 1)"
+        >
+          {{ i + 1 }}
+        </button>
+      </div>
+    </main>
+    <div class="col col-10 col-lg-2">
+      <app-ranking [newScore]="gameOver ? score : 0"></app-ranking>
     </div>
-  </main>
-  <div class="conainer d-flex justify-content-center ps-5">
-    <app-ranking [newScore]="gameOver ? score : 0"></app-ranking>
   </div>
 </div>

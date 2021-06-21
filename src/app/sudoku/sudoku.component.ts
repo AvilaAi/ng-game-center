@@ -21,10 +21,15 @@ export class SudokuComponent implements OnInit {
   holes = 10;
   life = 1;
   time = 90;
+  timeToDisplay = 0;
   score = 0;
   isActive = '';
   gameOver = true;
   isFirstStart = true;
+  minute =
+    Math.trunc(this.time / 60) +
+    ':' +
+    (this.time - Math.trunc(this.time / 60) * 60);
   message = 'Click on the empty case, than choose the correct number';
   constructor() {}
 
