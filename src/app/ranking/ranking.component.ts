@@ -13,6 +13,9 @@ export class RankingComponent implements OnInit {
   games = global.games;
   ngOnChanges(changes: SimpleChanges) {
     if (this.dbGameName === 'tictac') {
+      if (this.myScore && this.myScore.length === 0) {
+        this.myScore = 0;
+      }
       this.newScore = parseInt(this.myScore) + 1;
     }
     if (this.user && this.newScore > 0 && this.newScore > this.myScore) {
