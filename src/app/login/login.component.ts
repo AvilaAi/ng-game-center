@@ -28,13 +28,13 @@ export class LoginComponent implements OnInit {
 
   signUp(payload: any) {
     this.webReqService.post('/users', payload).subscribe((response: any) => {
-      console.log('in sign up ', typeof response, response);
+      console.log('in sign up ', typeof response, response[0][0]);
 
       if (typeof response == 'number' && response > 0) {
         this.existeAlert = '*username existe';
       } else {
         const avatar = this.avatars.find((e) => e.name === payload.avatar);
-        const userId = response[0].id;
+        const userId = response[0][0].id;
         sessionStorage.setItem(
           'user',
           JSON.stringify({
