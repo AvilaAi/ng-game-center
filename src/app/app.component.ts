@@ -8,7 +8,7 @@ import { Title, Meta } from '@angular/platform-browser';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'Game center';
+  title = 'Game time';
   constructor(
     private router: Router,
     private titleService: Title,

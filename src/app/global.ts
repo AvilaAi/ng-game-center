@@ -25,12 +25,20 @@ export const games = [
     emoji: '⭕',
   },
   {
-    name: 'Poké Memory',
+    name: 'Poké Memo',
     photo: '../../assets/images/memory.png',
     isNew: false,
     dbName: 'card',
 
     emoji: '🃏',
+  },
+  {
+    name: 'SudoCool ',
+    photo: '../../assets/images/sudoku.png',
+    isNew: false,
+
+    dbName: 'sudoku',
+    emoji: '✏️',
   },
   {
     name: 'Real Piano',
@@ -47,13 +55,5 @@ export const games = [
 
     dbName: 'bird',
     emoji: '🐤',
-  },
-  {
-    name: 'Sudoku ',
-    photo: '../../assets/images/sudoku.png',
-    isNew: false,
-
-    dbName: 'sudoku',
-    emoji: '✏️',
   },
 ];
