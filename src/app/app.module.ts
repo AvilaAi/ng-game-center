@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PianoComponent } from './piano/piano.component';
 import { SudokuComponent } from './sudoku/sudoku.component';
 import { RankingComponent } from './ranking/ranking.component';
+import { MoreComponent } from './more/more.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { RankingComponent } from './ranking/ranking.component';
     PianoComponent,
     SudokuComponent,
     RankingComponent,
+    MoreComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],

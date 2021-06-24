@@ -56,4 +56,11 @@ export const games = [
     dbName: 'bird',
     emoji: '🐤',
   },
+  {
+    name: 'See more',
+    photo: '../../assets/images/more.png',
+    isNew: true,
+    dbName: 'more',
+    emoji: '➕',
+  },
 ];
