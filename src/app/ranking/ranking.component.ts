@@ -45,7 +45,7 @@ export class RankingComponent implements OnInit {
   }
   // to home page
   getScores() {
-    this.webReqService.get('/game-scores').subscribe((data) => {
+    this.webReqService.get('/gameScores').subscribe((data) => {
       var str = JSON.stringify(data);
       var arr = [...JSON.parse(str)];
       const gameScores = arr.map((e) => {
