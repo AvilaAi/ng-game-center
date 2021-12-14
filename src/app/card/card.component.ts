@@ -14,7 +14,8 @@ export class CardComponent implements OnInit {
   random = 100;
   isGameStart = false;
   message = ' Turn over pairs of matching cards ';
-  imgUrl = 'https://pokeres.bastionbot.org/images/pokemon/';
+  // imgUrl = 'https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/';
+  imgUrl="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"
 
   ngOnInit(): void {
     var a = [];
@@ -71,7 +72,7 @@ export class CardComponent implements OnInit {
 
       setTimeout(() => {
         this.checkedCard = [];
-      }, 850);
+      }, 700);
     }
   }
 

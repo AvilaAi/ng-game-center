@@ -7,11 +7,17 @@ import { games } from '../global';
 })
 export class HomeComponent implements OnInit {
   constructor() {}
+loading=true
+games:any=[]
+classicGames:any=[]
+newGames:any=[]
+  ngOnInit(): void {
+    this.games = games;
+    this.newGames=this.games.filter((x:any) => x.isNew );
+    this.classicGames=this.games.filter((x:any) => !x.isNew );
 
-  ngOnInit(): void {}
-
-  ifGameNew(type: boolean) {
-    return this.games.filter((x) => x.isNew === type);
+    setTimeout(() => { this.loading=false},800)
+   
   }
-  games = games;
+
 }
